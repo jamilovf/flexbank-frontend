@@ -8,7 +8,7 @@ export default function AuthHome(props) {
     <div className="container">
       <div className="row">
         <div className="col-9">
-        <img src={homeWp}className="card-img-top" alt="..."/>
+        <img src={homeWp} className="auth card-img-top" alt="..."/>
         </div>
         <div className="col">
           {props.children}

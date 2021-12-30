@@ -11,7 +11,7 @@ export default function ContactUs() {
       </h6>
       <h6>
         <i className="fas fa-phone-alt"></i>
-        <span>+123456789</span>
+        <span>+1 (989) 404-9599</span>
       </h6>
     </div>
   );

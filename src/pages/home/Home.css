@@ -1,0 +1,30 @@
+#services{
+    margin-top: 4em;
+}
+
+.card{
+    border: none;
+}
+
+.btn-outline-primary{
+    color: #0d865c;
+    border-color: #0d865c;
+    font-size: 2em;
+    width: 8em;
+    margin-top: 0.5em;
+}
+
+.btn-outline-primary:hover{
+    background-color: #0d865c;
+    border-color: #0d865c;
+    color: #fff;
+}
+
+.btn-outline-primary{
+    width: 9em;
+}
+
+.home .card-img-top{
+    width: 15em;
+    margin: auto;
+}
