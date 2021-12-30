@@ -1,0 +1,12 @@
+.col .aboutUs h1{
+    margin-top: 4.5em;
+    color: #0d865c;
+}
+
+.aboutUs h6{
+    line-height: 1.5em;
+}
+
+.aboutUs h6 span{
+    color: #0d865c;
+}

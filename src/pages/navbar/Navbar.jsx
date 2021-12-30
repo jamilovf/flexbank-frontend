@@ -6,27 +6,27 @@ export default function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container">
-        <Link className="navbar-brand" to="authHome.html">
+        <Link className="navbar-brand" to="/">
           <h1>
             <span>FlexBank</span>
           </h1>
         </Link>
-        <Link className="navbar-info" to="authHome.html">
+        <Link className="navbar-info" to="/">
           Home
         </Link>
-        <Link className="navbar-info" to="aboutUs.html">
+        <Link className="navbar-info" to="about-us">
           About Us
         </Link>
-        <Link className="navbar-info" to="contactUs.html">
+        <Link className="navbar-info" to="contact-us">
           Contact Us
         </Link>
         <div className="d-grid gap-2 d-md-block">
-          <Link to="signIn.html">
+          <Link to="sign-in">
             <button className="btn btn-outline-success" type="button">
               Sign in
             </button>
           </Link>
-          <Link to="signUp.html">
+          <Link to="sign-up">
             <button className="btn btn-outline-danger" type="button">
               Sign up
             </button>

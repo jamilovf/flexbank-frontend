@@ -1,0 +1,36 @@
+body{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#loginForm{
+    width: 500px; 
+    margin-top: 3em;
+}
+
+#loginForm h1 {
+    text-align: center;
+    color: #0d865c;
+}
+
+.btn-primary, .btn-primary:hover{
+    border-color: #0d865c;
+    background-color: #0d865c;
+}
+
+a{
+    color: #0d865c;
+    text-decoration: none;
+}
+
+a:hover{
+    color: #0d865c;
+}
+
+#forgotPassword{
+    margin-left: 8.5em;
+}
+
+.form-check-input:checked{
+    border-color: #0d865c;
+    background-color: #0d865c;
+}

@@ -2,7 +2,7 @@ import React from "react";
 import "./AuthHome.css";
 import homeWp from "../../img/home-wp.jpg";
 
-export default function AuthHome() {
+export default function AuthHome(props) {
   return (
       
     <div className="container">
@@ -11,8 +11,7 @@ export default function AuthHome() {
         <img src={homeWp}className="card-img-top" alt="..."/>
         </div>
         <div className="col">
-          <h1>FlexBank</h1>
-          <h4>Your trusted, loyal digital bank</h4>
+          {props.children}
         </div>
       </div>
     </div>
