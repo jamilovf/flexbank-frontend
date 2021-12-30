@@ -5,6 +5,8 @@ import AuthHomeInfo from "./pages/auth/AuthHomeInfo";
 import ContactUs from "./pages/auth/ContactUs";
 import SignIn from "./pages/auth/SignIn";
 import SignUp from "./pages/auth/SignUp";
+import Cards from "./pages/cards/Cards";
+import OrderCard from "./pages/cards/OrderCard";
 import Home from "./pages/home/Home";
 import AuthNavbar from "./pages/navbar/AuthNavbar";
 import HomeNavbar from "./pages/navbar/HomeNavbar";
@@ -41,6 +43,14 @@ function App() {
       <Route path="/home">
         <HomeNavbar />
         <Home />
+      </Route>
+      <Route path="/order-card">
+        <HomeNavbar />
+        <OrderCard />
+      </Route>
+      <Route path="/cards">
+        <HomeNavbar />
+        <Cards />
       </Route>
     </div>
   );

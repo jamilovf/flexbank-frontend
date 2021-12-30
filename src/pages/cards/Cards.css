@@ -1,0 +1,182 @@
+:root {
+    --white: #fafafa;
+    --violet: #e2d8fd;
+    --dark-blue: #16044a;
+    --gray1: #e1e1e1;
+    --gray2: #6a6a6a;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  ul {
+    list-style: none;
+  }
+
+  .main-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .flexcard{
+    margin-left: 5em;
+    margin-top: 4.5em;
+    border: none;
+    width: 20em;
+  }
+
+  .flexcard .card-body .card-text{
+    text-align: center;
+    padding-bottom: 0.5em;
+  }
+
+  .flexcard .card-body i{
+    color: #0d865c;
+    font-size: 2em;
+    padding-bottom: 0.5em;
+  }
+
+  ol .block{
+    color: #DC3545;
+  }  
+
+  .scene {
+    width: 90%;
+    max-width: 35rem;
+    height: 20rem;
+    margin: 0 auto;
+    perspective: 600px;
+    margin-left: 16em;
+  }
+  
+  .my__card {
+    display: inline-block;
+    width: 50%;
+    height: 50%;
+    position: relative;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+    margin-top: 5em;
+    border-radius: 20px;
+    box-shadow: -15px 20px 20px rgba(22, 4, 74, 0.15);
+    background: var(--dark-blue);
+  }
+
+  .my__card.premium{
+    margin-top: 0.5em;
+    box-shadow: -15px 20px 20px rgba(4, 74, 70, 0.15);
+    background: #0a7c76;
+  }
+
+  .card:hover {
+    cursor: pointer;
+  }
+  
+  .card__front {
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+  }
+  
+  .card__front {
+    padding: 0 2rem;
+  }
+  
+  .card__logo {
+    width: 3em;
+    height: 3em;
+    margin-top: 0.2em;
+  }
+  
+  .card__number {
+    height: 1.1em;
+    width: 12.5em;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+  }
+  
+  .number-group,
+  .card__holder__name,
+  .card__expiration__date {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 1em;
+    text-shadow: 0 1.2px var(--gray2);
+    color: var(--white);
+    letter-spacing: 1px;
+  }
+  
+  .card__details {
+      width: 13em;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .card__holder,
+  .card__expiration {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .card__holder__title,
+  .card__expiration__title {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--white);
+    opacity: 0.7;
+    font-size: 1em;
+    margin-bottom: 0.1rem;
+  }
+  
+  .card__holder__name,
+  .card__expiration__date {
+    text-transform: uppercase;
+    font-size: 1em;
+  }
+
+  .card.btn.btn-outline-success{
+    font-size: 1.2em;
+    border-color: var(--dark-blue);
+    color: var(--dark-blue);
+    border-radius: 150px;
+    margin-bottom: 150px;
+    margin-left: 1.5em;
+    width: 13em;
+    height: 3.1em;
+    cursor: default;
+  }
+
+  .card.btn.btn-outline-success.premium{
+    border-color: #0a7c76;
+    color: #0a7c76;
+  }
+  
+  .card.btn.btn-outline-success:hover{
+    background-color: var(--dark-blue);
+    color: white;
+  }
+
+  .card.btn.btn-outline-success.premium:hover{
+    background-color: #0a7c76;
+    color: white;
+  }
+
+  .btn.btn-danger{
+    margin-left: 10em;
+    margin-top: 4em;
+    width: 10em;
+    height: 2.5em;
+    
+  }
+
+  .number-group{
+    margin-right: 0.5em;
+  }
+
+  .card {
+    display: inline-block;
+    flex-direction: row;
+  }

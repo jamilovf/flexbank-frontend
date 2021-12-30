@@ -22,7 +22,7 @@ export default function AuthNavbar() {
         </Link>
         <div className="d-grid gap-2 d-md-block">
           <Link to="sign-in">
-            <button className="btn btn-outline-success" type="button">
+            <button className="navi btn btn-outline-success" type="button">
               Sign in
             </button>
           </Link>

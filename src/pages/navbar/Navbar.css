@@ -12,12 +12,12 @@ body{
     color: #0d865c;
 }
 
-.btn-outline-success{
+.navi.btn-outline-success{
     border-color: #0d865c;
     margin-right: 5px;
 }
 
-.btn-outline-success:hover{
+.navi.btn-outline-success:hover{
     color: #fff;
     background-color: #0d865c;
 }

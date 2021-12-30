@@ -10,17 +10,17 @@ export default function Home() {
     <div className="home container" id="services">
       <div className="row">
         <div className="col-md-4">
-          <div className="card text-center">
+          <div className="homeCard text-center">
             <img src={cardDb} className="home card-img-top" alt="..." />
             <div className="row justify-content-center">
-              <Link to="#">
+              <Link to="order-card">
                 <button className="btn btn-outline-primary">Order new card</button>
               </Link>
             </div>
           </div>
         </div>
         <div className="col-md-4">
-          <div className="card text-center">
+          <div className="homeCard text-center">
             <img src={loanDb} className="home card-img-top" alt="..." />
             <div className="row justify-content-center">
               <Link to="#">
@@ -30,7 +30,7 @@ export default function Home() {
           </div>
         </div>
         <div className="col-md-4">
-          <div className="card text-center">
+          <div className="homeCard text-center">
             <img src={userDb} className="home card-img-top" alt="..." />
             <div className="row justify-content-center">
               <Link to="#">
