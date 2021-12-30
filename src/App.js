@@ -1,4 +1,5 @@
 import { Route } from "react-router-dom";
+import AccountDetails from "./pages/accountDetails/AccountDetails";
 import AboutUs from "./pages/auth/AboutUs";
 import AuthHome from "./pages/auth/AuthHome";
 import AuthHomeInfo from "./pages/auth/AuthHomeInfo";
@@ -71,6 +72,10 @@ function App() {
       <Route path="/loan-notifications">
         <HomeNavbar />
         <LoanNotifications />
+      </Route>
+      <Route path="/account-details">
+        <HomeNavbar />
+        <AccountDetails />
       </Route>
     </div>
   );

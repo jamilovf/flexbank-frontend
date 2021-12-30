@@ -33,7 +33,7 @@ export default function Home() {
           <div className="homeCard text-center">
             <img src={userDb} className="home card-img-top" alt="..." />
             <div className="row justify-content-center">
-              <Link to="#">
+              <Link to="account-details">
                 <button className="btn btn-outline-primary account">
                   Manage account
                 </button>

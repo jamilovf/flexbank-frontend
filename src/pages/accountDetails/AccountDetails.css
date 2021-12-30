@@ -1,0 +1,48 @@
+.acc.container{
+    margin-top: 0;
+}
+
+.far.fa-user{
+    display: inline-block;
+    color: #0d865c;
+    font-size: 5em;
+    margin-top: 1em;
+    margin-left: 2em;
+}
+
+p{
+    margin: auto;
+    display: inline;
+    font-size: 1.3em;
+}
+
+.col-md-9{
+    margin-top: 6.3em;
+}
+
+.col-md-9 h2{
+    color: #0d865c;
+}
+
+.acc.col-md-6{
+    padding-left: 10.9em;
+    margin-top: 1.9em;
+}
+
+.col-md-6 label{
+    font-size: 1.3em;
+}
+.acc.btn.btn-primary{
+    margin-top: 1.5em;
+    margin-left: 7.9em;
+    background-color: #fff;
+    border-color:#0d865c;
+    color: #0d865c;
+    font-size: 1.3em;
+}
+
+.acc.btn.btn-primary:hover{
+    background-color: #0d865c;;
+    border-color:#0d865c;
+    color: #fff;
+}

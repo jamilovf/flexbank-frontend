@@ -6,7 +6,7 @@ export default function LoanServices() {
   return (
     <div className="container" id="services">
       <div className="row">
-        <div className="col-md-6">
+        <div className="loan col-md-6">
           <div className="loan card text-center">
             <i className="fas fa-user-check"></i>
             <div className="row justify-content-center">
@@ -18,7 +18,7 @@ export default function LoanServices() {
             </div>
           </div>
         </div>
-        <div className="col-md-6">
+        <div className="loan col-md-6">
           <div className="loan card text-center">
             <i className="fas fa-car"></i>
             <div className="row justify-content-center">
