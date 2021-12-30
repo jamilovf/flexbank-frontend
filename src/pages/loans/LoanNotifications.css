@@ -1,0 +1,30 @@
+.card-title{
+    display: inline;
+}
+
+.card-text.rate{
+    display: inline;
+    margin-left: 13em;
+}
+
+.card-text.amount{
+    margin-top: 1em;
+}
+
+.card-header{
+    color: #0d865c;
+}
+
+.btn-primary{
+    color: #fff;
+    background-color: #0d865c;
+    border-color: #0d865c;
+    margin-top: 2em;
+    width: 8em;
+}
+
+.btn-primary:hover{
+    background-color: #0d865c;
+    border-color: #0d865c;
+}
+

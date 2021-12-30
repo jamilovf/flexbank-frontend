@@ -26,7 +26,7 @@ export default function HomeNavbar() {
         >
           Transaction History
         </Link>
-        <Link className="navbar-info" to="#">
+        <Link className="navbar-info" to="loan-notifications">
           Loan notifications
         </Link>
         <Link className="navbar-info" to="#">
