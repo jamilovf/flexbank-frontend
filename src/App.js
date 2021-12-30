@@ -1,7 +1,11 @@
+import AuthHome from "./pages/auth/AuthHome";
+import Navbar from "./pages/navbar/Navbar";
+
 function App() {
   return (
     <div>
-     <h1>Hello FlexBank!</h1>
+    <Navbar />
+    <AuthHome />
     </div>
   );
 }
