@@ -1,0 +1,36 @@
+#services{
+    margin-top: 4em;
+}
+
+.transfer.card{
+    border: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.transfer.btn-outline-primary{
+    color: #0d865c;
+    border-color: #0d865c;
+    font-size: 2em;
+    width: 8em;
+    margin-top: 0.5em;
+}
+
+.transfer.btn-outline-primary:hover{
+    background-color: #0d865c;
+    border-color: #0d865c;
+    color: #fff;
+}
+
+.transfer.btn-outline-primary{
+    width: 9em;
+}
+
+.transfer.card.text-center i{
+    font-size: 15em;
+    margin: auto;
+    color: #244A7C;
+}
+
+
+

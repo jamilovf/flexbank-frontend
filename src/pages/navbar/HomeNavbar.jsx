@@ -17,7 +17,7 @@ export default function HomeNavbar() {
         <Link className="navbar-info" to="cards">
           Cards
         </Link>
-        <Link className="navbar-info" to="#">
+        <Link className="navbar-info" to="transfer">
           Transfer
         </Link>
         <Link

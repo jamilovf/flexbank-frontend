@@ -15,6 +15,9 @@ import LoanServices from "./pages/loans/LoanServices";
 import PersonalLoan from "./pages/loans/PersonalLoan";
 import AuthNavbar from "./pages/navbar/AuthNavbar";
 import HomeNavbar from "./pages/navbar/HomeNavbar";
+import ExternalTransfer from "./pages/transfer/ExternalTransfer";
+import InternalTransfer from "./pages/transfer/InternalTransfer";
+import Transfer from "./pages/transfer/Transfer";
 
 function App() {
   return (
@@ -76,6 +79,18 @@ function App() {
       <Route path="/account-details">
         <HomeNavbar />
         <AccountDetails />
+      </Route>
+      <Route path="/transfer">
+        <HomeNavbar />
+        <Transfer />
+      </Route>
+      <Route path="/internal-transfer">
+        <HomeNavbar />
+        <InternalTransfer />
+      </Route>
+      <Route path="/external-transfer">
+        <HomeNavbar />
+        <ExternalTransfer />
       </Route>
     </div>
   );

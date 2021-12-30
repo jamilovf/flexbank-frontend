@@ -1,0 +1,21 @@
+h2{
+    color: #0d865c;
+    margin-bottom: 1em;
+    margin-right: 3em;
+}
+
+.mb-3.choose{
+    margin-top: 2em;
+}
+
+.btn-primary{
+    color: #fff;
+    background-color: #0d865c;
+    border-color: #0d865c;
+    margin-top: 0.5em;
+}
+
+.btn-primary:hover{
+    background-color: #0d865c;
+    border-color: #0d865c;
+}
