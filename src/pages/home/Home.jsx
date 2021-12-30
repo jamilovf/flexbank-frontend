@@ -23,7 +23,7 @@ export default function Home() {
           <div className="homeCard text-center">
             <img src={loanDb} className="home card-img-top" alt="..." />
             <div className="row justify-content-center">
-              <Link to="#">
+              <Link to="loan-services">
                 <button className="btn btn-outline-primary">Loan services</button>
               </Link>
             </div>

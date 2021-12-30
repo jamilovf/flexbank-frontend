@@ -1,0 +1,38 @@
+#services{
+    margin-top: 4em;
+}
+
+.loan.card{
+    border: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-outline-primary{
+    color: #0d865c;
+    border-color: #0d865c;
+    font-size: 2em;
+    width: 8em;
+    margin-top: 0.5em;
+}
+
+.btn-outline-primary:hover{
+    background-color: #0d865c;
+    border-color: #0d865c;
+    color: #fff;
+}
+
+.btn-outline-primary{
+    width: 9em;
+}
+
+.card.text-center i{
+    font-size: 15em;
+    margin: auto;
+    color: #244A7C;
+}
+
+i.fas.fa-user-check{
+    margin-left: 0.69em;
+}
+

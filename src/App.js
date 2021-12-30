@@ -8,6 +8,9 @@ import SignUp from "./pages/auth/SignUp";
 import Cards from "./pages/cards/Cards";
 import OrderCard from "./pages/cards/OrderCard";
 import Home from "./pages/home/Home";
+import CarLoan from "./pages/loans/CarLoan";
+import LoanServices from "./pages/loans/LoanServices";
+import PersonalLoan from "./pages/loans/PersonalLoan";
 import AuthNavbar from "./pages/navbar/AuthNavbar";
 import HomeNavbar from "./pages/navbar/HomeNavbar";
 
@@ -51,6 +54,18 @@ function App() {
       <Route path="/cards">
         <HomeNavbar />
         <Cards />
+      </Route>
+      <Route path="/loan-services">
+        <HomeNavbar />
+        <LoanServices />
+      </Route>
+      <Route path="/personal-loan">
+        <HomeNavbar />
+        <PersonalLoan />
+      </Route>
+      <Route path="/car-loan">
+        <HomeNavbar />
+        <CarLoan />
       </Route>
     </div>
   );
