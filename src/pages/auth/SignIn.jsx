@@ -8,24 +8,24 @@ export default function SignIn() {
       <h1>Sign in</h1>
       <form className="px-5 py-3">
         <div className="mb-3">
-          <label for="exampleDropdownFormEmail1" className="form-label">
+          <label htmlFor="signin-email" className="form-label">
             Email address
           </label>
           <input
             type="email"
             className="form-control"
-            id="exampleDropdownFormEmail1"
+            id="signin-email"
             placeholder="email@example.com"
           />
         </div>
         <div className="mb-3">
-          <label for="exampleDropdownFormPassword1" className="form-label">
+          <label htmlFor="signin-password" className="form-label">
             Password
           </label>
           <input
             type="password"
             className="form-control"
-            id="exampleDropdownFormPassword1"
+            id="signin-password"
             placeholder="Password"
           />
         </div>
@@ -34,9 +34,9 @@ export default function SignIn() {
             <input
               type="checkbox"
               className="form-check-input"
-              id="dropdownCheck"
+              id="signin-check"
             />
-            <label className="form-check-label" for="dropdownCheck">
+            <label className="form-check-label" htmlFor="signin-check">
               Remember me
             </label>
           </div>

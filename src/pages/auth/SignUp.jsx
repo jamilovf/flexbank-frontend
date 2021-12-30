@@ -7,36 +7,36 @@ export default function SignUp() {
       <h1>Sign up</h1>
       <form className="px-5 py-3">
         <div className="mb-3">
-          <label for="exampleDropdownFormEmail1" className="form-label">
+          <label htmlFor="signup-email" className="form-label">
             Email address
           </label>
           <input
             type="email"
             className="form-control"
-            id="exampleDropdownFormEmail1"
+            id="signup-email"
             placeholder="email@example.com"
           />
         </div>
         <div className="mb-3">
-          <label for="exampleDropdownFormPassword1" className="form-label">
+          <label htmlFor="signup-password" className="form-label">
             Password
           </label>
           <input
             type="password"
             className="form-control"
-            id="exampleDropdownFormPassword1"
+            id="signup-password"
             placeholder="Password"
           />
         </div>
         <div className="mb-3">
           <div className="mb-3">
-            <label for="exampleDropdownFormPassword1" className="form-label">
+            <label htmlFor="signup-rep-password" className="form-label">
               Repeat Password
             </label>
             <input
               type="password"
               className="form-control"
-              id="exampleDropdownFormPassword1"
+              id="signup-rep-password"
               placeholder="Password"
             />
           </div>
