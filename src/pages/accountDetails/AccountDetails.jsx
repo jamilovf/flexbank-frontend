@@ -1,7 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import AccountDetailsService from "../../api/accountDetailsService";
 import "./AccountDetails.css";
 
 export default function AccountDetails() {
+
+  const [firstName, setfirstName] = useState("");
+  const [lastName, setlastName] = useState("");
+  const [birthDate, setbirthDate] = useState("");
+  const [email, setemail] = useState("");
+  const [phoneNumber, setphoneNumber] = useState("");
+  const [city, setcity] = useState("");
+  const [address, setaddress] = useState("");
+  const [zip, setzip] = useState("");
+
+  useEffect(() => {
+    let accountDetailsService = new AccountDetailsService();
+    
+    accountDetailsService.getAccountDetails()
+    .then((response) => {
+      setfirstName(response.data.firstName);
+      setlastName(response.data.lastName);
+      setbirthDate(response.data.birthDate);
+      setemail(response.data.email);
+      setphoneNumber(response.data.phoneNumber);
+      setcity(response.data.city);
+      setaddress(response.data.address);
+      setzip(response.data.zip);
+    });
+    
+  }, [])
+
   return (
     <div className="acc container">
       <div className="row">
@@ -12,52 +40,52 @@ export default function AccountDetails() {
           <h2>My Account</h2>
         </div>
         <div className="acc col-md-6">
-          <label for="firstName" className="form-label">
-            First name:
+          <label htmlFor="firstName" className="form-label">
+            First name :
           </label>
-          <p>John</p>
+          <p> {firstName}</p>
         </div>
         <div className="acc col-md-6">
-          <label for="lastName" className="form-label">
-            Last name:
+          <label htmlFor="lastName" className="form-label">
+            Last name :
           </label>
-          <p>Williams</p>{" "}
+          <p> {lastName}</p>
         </div>
         <div className="acc col-md-6">
-          <label for="birthDate" className="form-label">
-            Birth date:
+          <label htmlFor="birthDate" className="form-label">
+            Birth date :
           </label>
-          <p>20-05-1990</p>
+          <p> {birthDate}</p>
         </div>
         <div className="acc col-md-6">
-          <label for="email" className="form-label">
-            Email:
+          <label htmlFor="email" className="form-label">
+            Email :
           </label>
-          <p>johnwill@gmail.com</p>
+          <p> {email}</p>
         </div>
         <div className="acc col-md-6">
-          <label for="phoneNumber" className="form-label">
-            Phone number:
+          <label htmlFor="phoneNumber" className="form-label">
+            Phone number :
           </label>
-          <p>+987654321</p>
+          <p> {phoneNumber}</p>
         </div>
         <div className="acc col-md-6">
-          <label for="city" className="form-label">
-            City:
+          <label htmlFor="city" className="form-label">
+            City :
           </label>
-          <p>Debrecen</p>
+          <p> {city}</p>
         </div>
         <div className="acc col-md-6">
-          <label for="address" className="form-label">
-            Address:
+          <label htmlFor="address" className="form-label">
+            Address :
           </label>
-          <p>Kassai st. 26</p>
+          <p> {address}</p>
         </div>
         <div className="acc col-md-6">
-          <label for="zip" className="form-label">
-            Zip:
+          <label htmlFor="zip" className="form-label">
+            Zip :
           </label>
-          <p>9999</p>
+          <p> {zip}</p>
         </div>
         <div className="col-12">
           <button type="submit" className="acc btn btn-primary">

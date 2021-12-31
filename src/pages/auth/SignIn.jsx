@@ -1,18 +1,42 @@
-import React from "react";
+import React, { useRef } from "react";
+import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
+import AuthService from "../../api/authService";
 import "./SignIn.css"
 
 export default function SignIn() {
+
+  const history = useHistory();
+
+  const emailInputRef = useRef();
+  const passwordInputRef = useRef();
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+
+    let authService = new AuthService();
+    const email = emailInputRef.current.value;
+    const password = passwordInputRef.current.value; 
+
+    authService.signin({email, password})
+    .then((response) => {
+      localStorage.setItem("Authorization", response.headers.authorization);
+      history.replace("/home")
+  });
+  
+  }
+
   return (
     <div className="container" id="loginForm">
       <h1>Sign in</h1>
-      <form className="px-5 py-3">
+      <form className="px-5 py-3" onSubmit={submitHandler}>
         <div className="mb-3">
           <label htmlFor="signin-email" className="form-label">
             Email address
           </label>
           <input
             type="email"
+            ref={emailInputRef}
             className="form-control"
             id="signin-email"
             placeholder="email@example.com"
@@ -24,6 +48,7 @@ export default function SignIn() {
           </label>
           <input
             type="password"
+            ref={passwordInputRef}
             className="form-control"
             id="signin-password"
             placeholder="Password"
