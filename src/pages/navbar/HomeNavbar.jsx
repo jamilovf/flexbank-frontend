@@ -22,7 +22,7 @@ export default function HomeNavbar() {
         </Link>
         <Link
           className="navbar-info"
-          to="#"
+          to="transaction-history"
         >
           Transaction History
         </Link>

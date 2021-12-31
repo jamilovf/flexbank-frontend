@@ -15,6 +15,7 @@ import LoanServices from "./pages/loans/LoanServices";
 import PersonalLoan from "./pages/loans/PersonalLoan";
 import AuthNavbar from "./pages/navbar/AuthNavbar";
 import HomeNavbar from "./pages/navbar/HomeNavbar";
+import TransactionHistory from "./pages/transactions/TransactionHistory";
 import ExternalTransfer from "./pages/transfer/ExternalTransfer";
 import InternalTransfer from "./pages/transfer/InternalTransfer";
 import Transfer from "./pages/transfer/Transfer";
@@ -91,6 +92,10 @@ function App() {
       <Route path="/external-transfer">
         <HomeNavbar />
         <ExternalTransfer />
+      </Route>
+      <Route path="/transaction-history">
+        <HomeNavbar />
+        <TransactionHistory />
       </Route>
     </div>
   );
