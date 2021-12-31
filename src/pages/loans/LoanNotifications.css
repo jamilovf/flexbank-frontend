@@ -15,7 +15,7 @@
     color: #0d865c;
 }
 
-.btn-primary{
+.loann.btn-primary{
     color: #fff;
     background-color: #0d865c;
     border-color: #0d865c;
@@ -23,7 +23,7 @@
     width: 8em;
 }
 
-.btn-primary:hover{
+.loann.btn-primary:hover{
     background-color: #0d865c;
     border-color: #0d865c;
 }

@@ -13,7 +13,7 @@ export default function LoanNotifications() {
               <h6 className="card-title">Due to: 20-05-2021</h6>
               <h6 className="card-text rate">Interest rate: 4%</h6>
               <h6 className="card-text amount">Amount: $220</h6>
-              <button type="submit" className="btn btn-primary">Pay</button>
+              <button type="submit" className="btn loann btn-primary">Pay</button>
             </div>
           </div>
           <div className="card mt-4">
@@ -22,7 +22,7 @@ export default function LoanNotifications() {
               <h6 className="card-title">Due to: 27-05-2021</h6>
               <h6 className="card-text rate">Interest rate: 9%</h6>
               <h6 className="card-text amount">Amount: $50</h6>
-              <button type="submit" className="btn btn-primary">Pay</button>
+              <button type="submit" className="btn loann btn-primary">Pay</button>
             </div>
           </div>
     </div>

@@ -8,14 +8,14 @@ h2{
     margin-top: 2em;
 }
 
-.btn-primary{
+.loan.btn-primary{
     color: #fff;
     background-color: #0d865c;
     border-color: #0d865c;
     margin-top: 2em;
 }
 
-.btn-primary:hover{
+.loan.btn-primary:hover{
     background-color: #0d865c;
     border-color: #0d865c;
 }
