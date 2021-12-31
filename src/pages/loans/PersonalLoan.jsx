@@ -36,7 +36,7 @@ export default function PersonalLoan() {
                 disabled
               />
             </div>
-            <button type="submit" className="loan btn btn-primary">
+            <button type="submit" className="btn loan btn-primary">
               Calculate
             </button>
           </form>
@@ -73,7 +73,7 @@ export default function PersonalLoan() {
                 disabled
               />
             </div>
-            <button type="submit" className="loan btn btn-primary">
+            <button type="submit" className="btn loan btn-primary">
               Send Request
             </button>
           </form>
