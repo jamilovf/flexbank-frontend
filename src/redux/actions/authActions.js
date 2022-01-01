@@ -12,3 +12,9 @@ export const logoutSuccess = () => {
         type : ACTIONS.LOGOUT_SUCCESS
     }
 }
+
+export const tokenExpired = () => {
+    return {
+        type : ACTIONS.TOKEN_EXPIRED
+    }
+}

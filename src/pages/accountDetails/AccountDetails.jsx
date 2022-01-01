@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
 import AccountDetailsService from "../../api/accountDetailsService";
+import secureLs from "../../common/helper";
+import { tokenExpired } from "../../redux/actions/authActions";
 import "./AccountDetails.css";
 
-export default function AccountDetails() {
+function AccountDetails(props) {
+
+  const history = useHistory();
 
   const [firstName, setfirstName] = useState("");
   const [lastName, setlastName] = useState("");
@@ -26,9 +32,16 @@ export default function AccountDetails() {
       setcity(response.data.city);
       setaddress(response.data.address);
       setzip(response.data.zip);
+    })
+    .catch((error) => {
+      if(error.response.headers.token === "expired"){
+        secureLs.set("Authorization", "");
+        props.onTokenExpired();
+        history.replace("/sign-in");
+      }
     });
     
-  }, [])
+  }, [history, props])
 
   return (
     <div className="acc container">
@@ -96,3 +109,11 @@ export default function AccountDetails() {
     </div>
   );
 }
+
+const mapDispatchToProps = dispatch => {
+  return{
+    onTokenExpired: () => dispatch(tokenExpired())
+  }
+}
+
+export default connect(null, mapDispatchToProps)(AccountDetails)

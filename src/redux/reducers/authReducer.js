@@ -19,6 +19,12 @@ const authReducer = (state = { ...authState }, action) => {
       isLoggedIn: false,
     };
   }
+  else if (action.type === ACTIONS.TOKEN_EXPIRED) {
+    return {
+      ...state,
+      isLoggedIn: false,
+    };
+  }
   return state;
 };
 
