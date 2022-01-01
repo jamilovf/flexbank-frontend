@@ -1,4 +1,5 @@
 import axios from "axios";
+import secureLs from "../common/helper";
 
 export default class AuthService{
 
@@ -9,7 +10,7 @@ export default class AuthService{
     signup(body){
         let config = {
             headers : {
-                phone : localStorage.getItem("phone")
+                phone : secureLs.get("phone")
             }
         }
         return axios.post("/api/auth/signup", body, config);
@@ -22,7 +23,7 @@ export default class AuthService{
     verifySmsCode(body){
         let config = {
             headers : {
-                phone : localStorage.getItem("phone")
+                phone : secureLs.get("phone")
             }
         }
         return axios.post("/api/auth/verifySmsCode", body, config);

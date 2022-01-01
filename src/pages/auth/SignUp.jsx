@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import AuthService from "../../api/authService";
+import secureLs from "../../common/helper";
 import "./SignIn.css";
 
 export default function SignUp() {
@@ -31,12 +32,12 @@ export default function SignUp() {
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
     const passwordConfirmation = passwordRepeatRef.current.value;
-    const phoneNumber = localStorage.getItem("phone");
+    const phoneNumber = secureLs.get("phone");
 
     authService
       .signup({ email, password, passwordConfirmation, phoneNumber })
       .then((response) => {
-        localStorage.setItem("phone", "");
+        secureLs.set("phone", "");
         history.replace("/sign-in");
       })
       .catch((error) => {

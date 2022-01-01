@@ -1,10 +1,13 @@
 import React, { useRef } from "react";
+import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import AuthService from "../../api/authService";
+import secureLs from "../../common/helper";
+import { signinSuccess } from "../../redux/actions/authActions";
 import "./SignIn.css"
 
-export default function SignIn() {
+function SignIn(props) {
 
   const history = useHistory();
 
@@ -20,7 +23,8 @@ export default function SignIn() {
 
     authService.signin({email, password})
     .then((response) => {
-      localStorage.setItem("Authorization", response.headers.authorization);
+      secureLs.set("Authorization", response.headers.authorization);
+      props.onSigninSuccess();
       history.replace("/home")
   });
   
@@ -78,3 +82,11 @@ export default function SignIn() {
     </div>
   );
 }
+
+const mapDispatchToProps = dispatch => {
+  return{
+    onSigninSuccess: () => dispatch(signinSuccess())
+  }
+}
+
+export default connect(null, mapDispatchToProps)(SignIn);

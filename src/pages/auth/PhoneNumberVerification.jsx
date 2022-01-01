@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import AuthService from "../../api/authService";
+import secureLs from "../../common/helper";
 import "./SignIn.css";
 
 export default function PhoneNumberVerification() {
@@ -17,7 +18,7 @@ export default function PhoneNumberVerification() {
     authService
       .verifyPhoneNumber({ phoneNumber })
       .then((response) => {
-        localStorage.setItem("phone", response.data.phoneNumber);
+        secureLs.set("phone", response.data.phoneNumber);
         history.replace("/sms-code-verification");
       })
       .catch((error) => {

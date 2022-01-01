@@ -1,3 +1,4 @@
+import { connect } from "react-redux";
 import { Redirect, Route } from "react-router-dom";
 import AccountDetails from "./pages/accountDetails/AccountDetails";
 import AboutUs from "./pages/auth/AboutUs";
@@ -22,99 +23,116 @@ import ExternalTransfer from "./pages/transfer/ExternalTransfer";
 import InternalTransfer from "./pages/transfer/InternalTransfer";
 import Transfer from "./pages/transfer/Transfer";
 
-function App() {
-
-  const signUpState = {
-    isMessageCodeAllowed: false,
-    isSignupAllowed: false,
-  };
-
+function App(props) {
   return (
     <div>
+      {props.store.isLoggedIn ? <HomeNavbar /> : <AuthNavbar />}
+
       <Route path="/phone-number-verification">
-        <AuthNavbar />
-        <PhoneNumberVerification />
+        {props.store.isLoggedIn ? (
+          <Redirect to="/home" />
+        ) : (
+          <PhoneNumberVerification />
+        )}
       </Route>
+
       <Route path="/sms-code-verification">
-        <AuthNavbar />
-        <SmsCodeVerification />
+        {props.store.isLoggedIn ? (
+          <Redirect to="/home" />
+        ) : props.store.isMessageCodeAllowed ? (
+          <SmsCodeVerification />
+        ) : (
+          <Redirect to="/phone-number-verification" />
+        )}
       </Route>
-      <Route path="/sign-in">
-        <AuthNavbar />
-        <SignIn />
-      </Route>
+
       <Route path="/sign-up">
-        <AuthNavbar />
-        {signUpState.isSignupAllowed ? <SignUp /> : <Redirect to="/phone-number-verification"/>}
+        {props.store.isLoggedIn ? (
+          <Redirect to="/home" />
+        ) : props.store.isSignupAllowed ? (
+          <SignUp />
+        ) : (
+          <Redirect to="/phone-number-verification" />
+        )}
       </Route>
+
+      <Route path="/sign-in">
+        {props.store.isLoggedIn ? <Redirect to="/home" /> : <SignIn />}
+      </Route>
+
       <Route path="/" exact>
-        <AuthNavbar />
         <AuthHome>
           <AuthHomeInfo />
         </AuthHome>
       </Route>
+
       <Route path="/about-us">
-        <AuthNavbar />
         <AuthHome>
           <AboutUs />
         </AuthHome>
       </Route>
+
       <Route path="/contact-us">
-        <AuthNavbar />
         <AuthHome>
           <ContactUs />
         </AuthHome>
       </Route>
+
       <Route path="/home">
-        <HomeNavbar />
-        <Home />
+        {props.store.isLoggedIn ? <Home /> : <Redirect to="/" />}
       </Route>
+
       <Route path="/order-card">
-        <HomeNavbar />
-        <OrderCard />
+        {props.store.isLoggedIn ? <OrderCard /> : <Redirect to="/" />}
       </Route>
+
       <Route path="/cards">
-        <HomeNavbar />
-        <Cards />
+        {props.store.isLoggedIn ? <Cards /> : <Redirect to="/" />}
       </Route>
+
       <Route path="/loan-services">
-        <HomeNavbar />
-        <LoanServices />
+        {props.store.isLoggedIn ? <LoanServices /> : <Redirect to="/" />}
       </Route>
+
       <Route path="/personal-loan">
-        <HomeNavbar />
-        <PersonalLoan />
+        {props.store.isLoggedIn ? <PersonalLoan /> : <Redirect to="/" />}
       </Route>
+
       <Route path="/car-loan">
-        <HomeNavbar />
-        <CarLoan />
+        {props.store.isLoggedIn ? <CarLoan /> : <Redirect to="/" />}
       </Route>
+
       <Route path="/loan-notifications">
-        <HomeNavbar />
-        <LoanNotifications />
+        {props.store.isLoggedIn ? <LoanNotifications /> : <Redirect to="/" />}
       </Route>
+
       <Route path="/account-details">
-        <HomeNavbar />
-        <AccountDetails />
+        {props.store.isLoggedIn ? <AccountDetails /> : <Redirect to="/" />}
       </Route>
+
       <Route path="/transfer">
-        <HomeNavbar />
-        <Transfer />
+        {props.store.isLoggedIn ? <Transfer /> : <Redirect to="/" />}
       </Route>
+
       <Route path="/internal-transfer">
-        <HomeNavbar />
-        <InternalTransfer />
+        {props.store.isLoggedIn ? <InternalTransfer /> : <Redirect to="/" />}
       </Route>
+
       <Route path="/external-transfer">
-        <HomeNavbar />
-        <ExternalTransfer />
+        {props.store.isLoggedIn ? <ExternalTransfer /> : <Redirect to="/" />}
       </Route>
+
       <Route path="/transaction-history">
-        <HomeNavbar />
-        <TransactionHistory />
+        {props.store.isLoggedIn ? <TransactionHistory /> : <Redirect to="/" />}
       </Route>
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = (store) => {
+  return {
+    store
+  };
+};
+
+export default connect(mapStateToProps)(App);
