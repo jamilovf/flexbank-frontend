@@ -1,11 +1,13 @@
-import { Route } from "react-router-dom";
+import { Redirect, Route } from "react-router-dom";
 import AccountDetails from "./pages/accountDetails/AccountDetails";
 import AboutUs from "./pages/auth/AboutUs";
 import AuthHome from "./pages/auth/AuthHome";
 import AuthHomeInfo from "./pages/auth/AuthHomeInfo";
 import ContactUs from "./pages/auth/ContactUs";
+import PhoneNumberVerification from "./pages/auth/PhoneNumberVerification";
 import SignIn from "./pages/auth/SignIn";
 import SignUp from "./pages/auth/SignUp";
+import SmsCodeVerification from "./pages/auth/SmsCodeVerification";
 import Cards from "./pages/cards/Cards";
 import OrderCard from "./pages/cards/OrderCard";
 import Home from "./pages/home/Home";
@@ -21,15 +23,29 @@ import InternalTransfer from "./pages/transfer/InternalTransfer";
 import Transfer from "./pages/transfer/Transfer";
 
 function App() {
+
+  const signUpState = {
+    isMessageCodeAllowed: false,
+    isSignupAllowed: false,
+  };
+
   return (
     <div>
+      <Route path="/phone-number-verification">
+        <AuthNavbar />
+        <PhoneNumberVerification />
+      </Route>
+      <Route path="/sms-code-verification">
+        <AuthNavbar />
+        <SmsCodeVerification />
+      </Route>
       <Route path="/sign-in">
         <AuthNavbar />
         <SignIn />
       </Route>
       <Route path="/sign-up">
         <AuthNavbar />
-        <SignUp />
+        {signUpState.isSignupAllowed ? <SignUp /> : <Redirect to="/phone-number-verification"/>}
       </Route>
       <Route path="/" exact>
         <AuthNavbar />

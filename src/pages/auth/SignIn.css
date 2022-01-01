@@ -17,6 +17,11 @@ body{
     background-color: #0d865c;
 }
 
+.btn-primary:focus{
+    border-color: #0d865c;
+    background-color: #0d865c;
+}
+
 a{
     color: #0d865c;
     text-decoration: none;
@@ -33,4 +38,16 @@ a:hover{
 .form-check-input:checked{
     border-color: #0d865c;
     background-color: #0d865c;
+}
+
+.verification-error{
+    text-align: center;
+    color: red;
+    margin-top: 1em;
+}
+
+.password-error{
+    text-align: center;
+    color: red;
+    margin-top: 1em;
 }
