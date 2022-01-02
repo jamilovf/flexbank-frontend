@@ -6,7 +6,7 @@ import secureLs from "../../common/helper";
 import { phoneNumberVerificationSuccess } from "../../redux/actions/authActions";
 import "./SignIn.css";
 
- function PhoneNumberVerification(props) {
+function PhoneNumberVerification(props) {
   const phoneNumberRef = useRef();
   const [verificationError, setverificationError] = useState("");
   const history = useHistory();
@@ -34,7 +34,7 @@ import "./SignIn.css";
       <form className="px-5 py-3" onSubmit={submitHandler}>
         <div className="mb-3">
           <label htmlFor="phoneNumber" className="form-label">
-            Phone number  
+            Phone number
           </label>
           <input
             type="text"
@@ -43,22 +43,21 @@ import "./SignIn.css";
             id="phoneNumber"
             placeholder="+123456789"
           />
+          <h6 className="verification-error">{verificationError}</h6>
         </div>
         <button type="submit" className="btn btn-primary">
           Verify
         </button>
       </form>
-      <div className="verification-error">
-      <h6>{verificationError}</h6>
-      </div>
     </div>
   );
 }
 
-const mapDispatchToProps = dispatch => {
-  return{
-    onPhoneNumberVerificationSuccess: () => dispatch(phoneNumberVerificationSuccess())
-  }
-}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onPhoneNumberVerificationSuccess: () =>
+      dispatch(phoneNumberVerificationSuccess()),
+  };
+};
 
-export default connect(null, mapDispatchToProps)(PhoneNumberVerification)
+export default connect(null, mapDispatchToProps)(PhoneNumberVerification);

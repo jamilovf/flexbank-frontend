@@ -41,13 +41,41 @@ a:hover{
 }
 
 .verification-error{
+    font-size: 0.9em;
     text-align: center;
-    color: red;
+    color: #DC3545;
     margin-top: 1em;
 }
 
 .password-error{
+    font-size: 0.9em;
     text-align: center;
-    color: red;
+    color: #DC3545;
     margin-top: 1em;
+}
+
+.signin-password-error{
+    font-size: 0.7em;
+    color: #DC3545;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.signin-password-valid{
+    font-size: 0.7em;
+    color: #0d865c;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.top{
+    margin-top: 1em;
+}
+
+.fas.fa-check{
+    margin-left: 0.5em;
+}
+.fas.fa-times{
+    margin-left: 0.5em;
+    color: #DC3545;
 }

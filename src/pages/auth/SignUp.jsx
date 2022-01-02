@@ -2,30 +2,44 @@ import React, { useEffect, useRef, useState } from "react";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import AuthService from "../../api/authService";
-import secureLs from "../../common/helper";
+import secureLs, {
+  hasLowerCase,
+  hasUpperCase,
+  hasDigit,
+  hasSymbol,
+} from "../../common/helper";
 import { signupVerificationSuccess } from "../../redux/actions/authActions";
 import "./SignIn.css";
 
 function SignUp(props) {
-
+  const [lengthError, setlengthError] = useState(false);
+  const [upperError, setupperError] = useState(false);
+  const [lowerError, setlowerError] = useState(false);
+  const [digitError, setdigitError] = useState(false);
+  const [symbolError, setsymbolError] = useState(false);
   const [passwordError, setpasswordError] = useState("");
+
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordRepeatRef = useRef();
   const history = useHistory();
 
-  useEffect(() => {
-    
-  }, [passwordError])
+  useEffect(() => {}, [
+    passwordError,
+    lengthError,
+    upperError,
+    lowerError,
+    digitError,
+    symbolError,
+  ]);
 
   const checkPasswordsEquality = () => {
-    if(passwordRef.current.value !== passwordRepeatRef.current.value){
+    if (passwordRef.current.value !== passwordRepeatRef.current.value) {
       setpasswordError("Passwords must be equal!");
-    }
-    else{
+    } else {
       setpasswordError("");
     }
-  }
+  };
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -46,6 +60,21 @@ function SignUp(props) {
       .catch((error) => {
         setpasswordError(error.response.data.message);
       });
+  };
+
+  const checkPasswordValidity = () => {
+    checkPasswordsEquality();
+    const password = passwordRef.current.value;
+
+    password.length >= 8 ? setlengthError(true) : setlengthError(false);
+
+    hasUpperCase(password) ? setupperError(true) : setupperError(false);
+
+    hasLowerCase(password) ? setlowerError(true) : setlowerError(false);
+
+    hasDigit(password) ? setdigitError(true) : setdigitError(false);
+
+    hasSymbol(password) ? setsymbolError(true) : setsymbolError(false);
   };
 
   return (
@@ -74,7 +103,7 @@ function SignUp(props) {
             className="form-control"
             id="signup-password"
             placeholder="Password"
-            onChange={checkPasswordsEquality}
+            onChange={checkPasswordValidity}
           />
         </div>
         <div className="mb-3">
@@ -88,9 +117,64 @@ function SignUp(props) {
               className="form-control"
               id="signup-rep-password"
               placeholder="Password"
-              onChange={checkPasswordsEquality}
+              onChange={checkPasswordValidity}
             />
             <h6 className="password-error">{passwordError}</h6>
+            {lengthError ? (
+              <h6 className="top signin-password-valid">
+                At least 8 characters
+                <i class="fas fa-check"></i>
+              </h6>
+            ) : (
+              <h6 className="top signin-password-error">
+                At least 8 characters
+                <i class="fas fa-times"></i>
+              </h6>
+            )}
+            {lowerError ? (
+              <h6 className="signin-password-valid">
+                At least 1 lower case
+                <i class="fas fa-check"></i>
+              </h6>
+            ) : (
+              <h6 className="signin-password-error">
+                At least 1 lower case
+                <i class="fas fa-times"></i>
+              </h6>
+            )}
+            {upperError ? (
+              <h6 className="signin-password-valid">
+                At least 1 upper case
+                <i class="fas fa-check"></i>
+              </h6>
+            ) : (
+              <h6 className="signin-password-error">
+                At least 1 upper case
+                <i class="fas fa-times"></i>
+              </h6>
+            )}
+            {symbolError ? (
+              <h6 className="signin-password-valid">
+                At least 1 symbol
+                <i class="fas fa-check"></i>
+              </h6>
+            ) : (
+              <h6 className="signin-password-error">
+                At least 1 symbol
+                <i class="fas fa-times"></i>
+              </h6>
+            )}
+            {digitError ? (
+              <h6 className="signin-password-valid">
+                At least 1 digit
+                <i class="fas fa-check"></i>
+              </h6>
+            ) : (
+              <h6 className="signin-password-error">
+                At least 1 digit
+                <i class="fas fa-times"></i>
+              </h6>
+            )}
           </div>
           <div className="mb-3" />
         </div>
@@ -102,10 +186,10 @@ function SignUp(props) {
   );
 }
 
-const mapDispatchToProps = dispatch => {
-  return{
-    onSignupVerificationSuccess: () => dispatch(signupVerificationSuccess())
-  }
-}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onSignupVerificationSuccess: () => dispatch(signupVerificationSuccess()),
+  };
+};
 
-export default connect(null, mapDispatchToProps)(SignUp)
+export default connect(null, mapDispatchToProps)(SignUp);

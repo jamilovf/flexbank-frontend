@@ -1,14 +1,15 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import AuthService from "../../api/authService";
 import secureLs from "../../common/helper";
 import { signinSuccess } from "../../redux/actions/authActions";
-import "./SignIn.css"
+import "./SignIn.css";
 
 function SignIn(props) {
 
+  const [credentialError, setcredentialError] = useState("");
   const history = useHistory();
 
   const emailInputRef = useRef();
@@ -19,16 +20,19 @@ function SignIn(props) {
 
     let authService = new AuthService();
     const email = emailInputRef.current.value;
-    const password = passwordInputRef.current.value; 
+    const password = passwordInputRef.current.value;
 
-    authService.signin({email, password})
-    .then((response) => {
-      secureLs.set("Authorization", response.headers.authorization);
-      props.onSigninSuccess();
-      history.replace("/home")
-  });
-  
-  }
+    authService
+      .signin({ email, password })
+      .then((response) => {
+        secureLs.set("Authorization", response.headers.authorization);
+        props.onSigninSuccess();
+        history.replace("/home");
+      })
+      .catch( 
+        setcredentialError("Please, enter your credentials correctly.")
+      );
+  };
 
   return (
     <div className="container" id="loginForm">
@@ -57,6 +61,7 @@ function SignIn(props) {
             id="signin-password"
             placeholder="Password"
           />
+          <h6 className="password-error">{credentialError}</h6>
         </div>
         <div className="mb-3">
           <div className="form-check">
@@ -83,10 +88,10 @@ function SignIn(props) {
   );
 }
 
-const mapDispatchToProps = dispatch => {
-  return{
-    onSigninSuccess: () => dispatch(signinSuccess())
-  }
-}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onSigninSuccess: () => dispatch(signinSuccess()),
+  };
+};
 
 export default connect(null, mapDispatchToProps)(SignIn);
