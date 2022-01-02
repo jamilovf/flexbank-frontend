@@ -123,56 +123,56 @@ function SignUp(props) {
             {lengthError ? (
               <h6 className="top signin-password-valid">
                 At least 8 characters
-                <i class="fas fa-check"></i>
+                <i className="fas fa-check"></i>
               </h6>
             ) : (
               <h6 className="top signin-password-error">
                 At least 8 characters
-                <i class="fas fa-times"></i>
+                <i className="fas fa-times"></i>
               </h6>
             )}
             {lowerError ? (
               <h6 className="signin-password-valid">
                 At least 1 lower case
-                <i class="fas fa-check"></i>
+                <i className="fas fa-check"></i>
               </h6>
             ) : (
               <h6 className="signin-password-error">
                 At least 1 lower case
-                <i class="fas fa-times"></i>
+                <i className="fas fa-times"></i>
               </h6>
             )}
             {upperError ? (
               <h6 className="signin-password-valid">
                 At least 1 upper case
-                <i class="fas fa-check"></i>
+                <i className="fas fa-check"></i>
               </h6>
             ) : (
               <h6 className="signin-password-error">
                 At least 1 upper case
-                <i class="fas fa-times"></i>
+                <i className="fas fa-times"></i>
               </h6>
             )}
             {symbolError ? (
               <h6 className="signin-password-valid">
                 At least 1 symbol
-                <i class="fas fa-check"></i>
+                <i className="fas fa-check"></i>
               </h6>
             ) : (
               <h6 className="signin-password-error">
                 At least 1 symbol
-                <i class="fas fa-times"></i>
+                <i className="fas fa-times"></i>
               </h6>
             )}
             {digitError ? (
               <h6 className="signin-password-valid">
                 At least 1 digit
-                <i class="fas fa-check"></i>
+                <i className="fas fa-check"></i>
               </h6>
             ) : (
               <h6 className="signin-password-error">
                 At least 1 digit
-                <i class="fas fa-times"></i>
+                <i className="fas fa-times"></i>
               </h6>
             )}
           </div>
