@@ -3,26 +3,45 @@ import * as ACTIONS from "../constants/constants";
 const authState = {
   isLoggedIn: false,
   isMessageCodeAllowed: false,
-  isSignupAllowed: false,
+  isSignupAllowed: false
 };
 
 const authReducer = (state = { ...authState }, action) => {
   if (action.type === ACTIONS.SIGNIN_SUCCESS) {
     return {
       ...state,
-      isLoggedIn: true,
+      isLoggedIn: true
+    };
+  }
+  else if (action.type === ACTIONS.PHONE_NUMBER_VERIFICATION_SUCCESS) {
+    return {
+      ...state,
+      isMessageCodeAllowed: true
+    };
+  }
+  else if (action.type === ACTIONS.SMS_CODE_VERIFICATION_SUCCESS) {
+    return {
+      ...state,
+      isSignupAllowed: true
+    };
+  }
+  else if (action.type === ACTIONS.SIGNUP_VERIFICATION_SUCCESS) {
+    return {
+      ...state,
+      isMessageCodeAllowed: false,
+      isSignupAllowed: false
     };
   }
   else if (action.type === ACTIONS.LOGOUT_SUCCESS) {
     return {
       ...state,
-      isLoggedIn: false,
+      isLoggedIn: false
     };
   }
   else if (action.type === ACTIONS.TOKEN_EXPIRED) {
     return {
       ...state,
-      isLoggedIn: false,
+      isLoggedIn: false
     };
   }
   return state;

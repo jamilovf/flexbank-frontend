@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
+import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import AuthService from "../../api/authService";
 import secureLs from "../../common/helper";
+import { signupVerificationSuccess } from "../../redux/actions/authActions";
 import "./SignIn.css";
 
-export default function SignUp() {
+function SignUp(props) {
 
   const [passwordError, setpasswordError] = useState("");
   const emailRef = useRef();
@@ -38,6 +40,7 @@ export default function SignUp() {
       .signup({ email, password, passwordConfirmation, phoneNumber })
       .then((response) => {
         secureLs.set("phone", "");
+        props.onSignupVerificationSuccess();
         history.replace("/sign-in");
       })
       .catch((error) => {
@@ -98,3 +101,11 @@ export default function SignUp() {
     </div>
   );
 }
+
+const mapDispatchToProps = dispatch => {
+  return{
+    onSignupVerificationSuccess: () => dispatch(signupVerificationSuccess())
+  }
+}
+
+export default connect(null, mapDispatchToProps)(SignUp)

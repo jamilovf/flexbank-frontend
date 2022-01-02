@@ -7,6 +7,24 @@ export const signinSuccess = () => {
     }
 }
 
+export const phoneNumberVerificationSuccess = () => {
+    return {
+        type : ACTIONS.PHONE_NUMBER_VERIFICATION_SUCCESS
+    }
+}
+
+export const smsCodeVerificationSuccess = () => {
+    return {
+        type : ACTIONS.SMS_CODE_VERIFICATION_SUCCESS
+    }
+}
+
+export const signupVerificationSuccess = () => {
+    return {
+        type : ACTIONS.SIGNUP_VERIFICATION_SUCCESS
+    }
+}
+
 export const logoutSuccess = () => {
     return {
         type : ACTIONS.LOGOUT_SUCCESS

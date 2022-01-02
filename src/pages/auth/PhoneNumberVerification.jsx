@@ -1,10 +1,12 @@
 import React, { useRef, useState } from "react";
+import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import AuthService from "../../api/authService";
 import secureLs from "../../common/helper";
+import { phoneNumberVerificationSuccess } from "../../redux/actions/authActions";
 import "./SignIn.css";
 
-export default function PhoneNumberVerification() {
+ function PhoneNumberVerification(props) {
   const phoneNumberRef = useRef();
   const [verificationError, setverificationError] = useState("");
   const history = useHistory();
@@ -19,6 +21,7 @@ export default function PhoneNumberVerification() {
       .verifyPhoneNumber({ phoneNumber })
       .then((response) => {
         secureLs.set("phone", response.data.phoneNumber);
+        props.onPhoneNumberVerificationSuccess();
         history.replace("/sms-code-verification");
       })
       .catch((error) => {
@@ -51,3 +54,11 @@ export default function PhoneNumberVerification() {
     </div>
   );
 }
+
+const mapDispatchToProps = dispatch => {
+  return{
+    onPhoneNumberVerificationSuccess: () => dispatch(phoneNumberVerificationSuccess())
+  }
+}
+
+export default connect(null, mapDispatchToProps)(PhoneNumberVerification)

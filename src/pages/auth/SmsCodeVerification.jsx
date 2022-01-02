@@ -1,10 +1,12 @@
 import React, { useRef, useState } from "react";
+import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import AuthService from "../../api/authService";
 import secureLs from "../../common/helper";
+import { smsCodeVerificationSuccess } from "../../redux/actions/authActions";
 import "./SignIn.css";
 
-export default function SmsCodeVerification() {
+ function SmsCodeVerification(props) {
   const smsCodeRef = useRef();
   const [verificationError, setverificationError] = useState("");
   const history = useHistory();
@@ -20,6 +22,7 @@ export default function SmsCodeVerification() {
       .verifySmsCode({ smsCode, phoneNumber })
       .then((response) => {
         secureLs.set("phone", response.data.phoneNumber);
+        props.onSmsCodeVerificationSuccess();
         history.replace("/sign-up");
       })
       .catch((error) => {
@@ -52,3 +55,11 @@ export default function SmsCodeVerification() {
     </div>
   );
 }
+
+const mapDispatchToProps = dispatch => {
+  return{
+    onSmsCodeVerificationSuccess: () => dispatch(smsCodeVerificationSuccess())
+  }
+}
+
+export default connect(null, mapDispatchToProps)(SmsCodeVerification)
