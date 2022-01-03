@@ -1,68 +1,95 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import "./Cards.css";
 import visaLogo from "../../img/visa-logo.svg";
+import CardService from "../../api/cardService";
+import { splitString, formattedBalance } from "../../common/helper";
+import BankCard from "./BankCard";
 
 export default function Cards() {
-    return (
-<div className="main-container">
-    <div className="flexcard">
-      <div className="card-body">
-        <i className="fas fa-info-circle"></i>
-        <h4 className="card-text">In case of fraud detection or stolen amount:</h4>
-        <ol>
-         <h5><li className="block">Block your card.</li></h5> 
-         <h5><li>Contact us from Contact Us section</li></h5> 
-        </ol>
-      </div>
-    </div>
-    <div className="scene">
-      <div className="my__card">
-        <div className="card__front">
-          <img src={visaLogo} className="card__logo" alt='...'/>
-          <div className="card__number number">
-            <div className="number-group number-group--0">4011</div>
-            <div className="number-group number-group--1">****</div>
-            <div className="number-group number-group--2">****</div>
-            <div className="number-group number-group--3">1586</div>
-            <button type="button" className="btn btn-danger">Block</button>
-          </div>
-          <div className="card__details">
-            <div className="card__holder">
-              <span className="card__holder__title">Card Holder</span>
-              <span className="card__holder__name">John Williams</span>
-            </div>
-            <div className="card__expiration">
-              <span className="card__expiration__title">Expires</span>
-              <span className="card__expiration__date">11/28</span>
-            </div>
-          </div>
+  const [standardCard, setstandardCard] = useState(false);
+  const [standardId, setstandardId] = useState(0);
+  const [standardCardNumber, setstandardCardNumber] = useState([]);
+  const [standardBalance, setstandardBalance] = useState("");
+  const [standardExpiryDate, setstandardExpiryDate] = useState("");
+  const [premiumCard, setpremiumCard] = useState(false);
+  const [premiumId, setpremiumId] = useState(0);
+  const [premiumCardNumber, setpremiumCardNumber] = useState([]);
+  const [premiumBalance, setpremiumBalance] = useState("");
+  const [premiumExpiryDate, setpremiumExpiryDate] = useState("");
+  const [customerName, setcustomerName] = useState("");
+
+  useEffect(() => {
+    let cardService = new CardService();
+
+    cardService.getAllCards().then((response) => {
+      response.data.map((card) => {
+        if (card.cardType === "STANDARD") {
+          setstandardCard(true);
+          setstandardId(card.id);
+          setstandardCardNumber(splitString(card.cardNumber, 4));
+          setstandardBalance(formattedBalance(card.balance));
+          setstandardExpiryDate(card.expiryDate);
+          setcustomerName(card.customerName);
+        } else if (card.cardType === "PREMIUM") {
+          setpremiumCard(true);
+          setpremiumId(card.id);
+          setpremiumCardNumber(splitString(card.cardNumber, 4));
+          setpremiumBalance(formattedBalance(card.balance));
+          setpremiumExpiryDate(card.expiryDate);
+          setcustomerName(card.customerName);
+        }
+      });
+    });
+  }, []);
+
+  return (
+    <div className="main-container">
+      <div className="flexcard">
+        <div className="card-body">
+          <i className="fas fa-info-circle"></i>
+          <h4 className="card-text">
+            In case of fraud detection or stolen amount:
+          </h4>
+          <ol>
+            <h5>
+              <li className="block">Block your card.</li>
+            </h5>
+            <h5>
+              <li>Contact us from Contact Us section</li>
+            </h5>
+          </ol>
         </div>
       </div>
-      <button type="button" className="card btn btn-outline-success">Balance: 10,000 USD</button>
-      <div className="my__card premium">
-        <div className="card__front">
-          <img src={visaLogo} className="card__logo" alt='...'/>
-          <div className="card__number number">
-            <div className="number-group number-group--0">4011</div>
-            <div className="number-group number-group--1">****</div>
-            <div className="number-group number-group--2">****</div>
-            <div className="number-group number-group--3">1620</div>
-            <button type="button" className="btn btn-danger">Block</button>
-          </div>
-          <div className="card__details">
-            <div className="card__holder">
-              <span className="card__holder__title">Card Holder</span>
-              <span className="card__holder__name">John Williams</span>
-            </div>
-            <div className="card__expiration">
-              <span className="card__expiration__title">Expires</span>
-              <span className="card__expiration__date">05/28</span>
-            </div>
-          </div>
-        </div>
+      <div className="scene">
+        {standardCard ? (
+          <BankCard
+            cardType="my__card"
+            key={standardId}
+            cardNumber={standardCardNumber}
+            cardExpiryDate={standardExpiryDate}
+            customerName={customerName}
+          />
+        ) : null}
+        {standardCard ? (
+          <button type="button" className="card btn btn-outline-success">
+            Balance: {standardBalance} USD
+          </button>
+        ) : null}
+        {premiumCard ? (
+          <BankCard
+            cardType="my__card premium"
+            key={premiumId}
+            cardNumber={premiumCardNumber}
+            cardExpiryDate={premiumExpiryDate}
+            customerName={customerName}
+          />
+        ) : null}
+        {premiumCard ? (
+          <button type="button" className="card btn btn-outline-success">
+            Balance: {premiumBalance} USD
+          </button>
+        ) : null}
       </div>
-      <button type="button" className="card btn btn-outline-success premium">Balance: 50,000 USD</button>
     </div>
-  </div>
-    )
+  );
 }
