@@ -26,3 +26,7 @@ export const splitString = (str, n) => {
 export const formattedBalance = (x) => {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
+
+export const calculateTotalRepayment = (amount, period, rate) =>{
+  return amount * ((1 + (rate / 100 / 12)) ** period);
+};

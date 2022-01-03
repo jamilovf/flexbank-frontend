@@ -1,82 +1,41 @@
 import React from "react";
 import "./Loan.css";
+import LoanCalculator from "./LoanCalculator";
+import LoanRequest from "./LoanRequest";
 
 export default function PersonalLoan() {
+  const periodOptions = [
+    {
+      key: 3,
+      value: "3 months",
+    },
+    {
+      key: 6,
+      value: "6 months",
+    },
+    {
+      key: 9,
+      value: "9 months",
+    },
+    {
+      key: 12,
+      value: "12 months",
+    },
+    {
+      key: 24,
+      value: "24 months",
+    },
+  ];
+
   return (
     <div className="container">
       <div className="row">
         <div className="col-4">
-          <form className="mt-4">
-            <h2>Loan Calculator</h2>
-            <div className="mb-3">
-              <label htmlFor="inputAmount" className="form-label">
-                Amount
-              </label>
-              <input type="text" className="form-control" id="inputAmount" />
-            </div>
-            <div className="mb-3 choose">
-              <select className="form-select" aria-label="Default select example">
-                <option defaultValue>Period</option>
-                <option value="1">3 months</option>
-                <option value="2">6 months</option>
-                <option value="3">9 months</option>
-                <option value="4">12 months</option>
-                <option value="5">24 months</option>
-              </select>
-            </div>
-            <div className="mb-3 choose">
-              <label htmlFor="inputInterestRate" className="form-label">
-                Interest Rate
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="inputInterestRate"
-                placeholder="9%"
-                disabled
-              />
-            </div>
-            <button type="submit" className="btn loan btn-primary">
-              Calculate
-            </button>
-          </form>
+          <LoanCalculator rate="12%" rateValue="12" periodOptions={periodOptions} />
         </div>
         <div className="col-2"></div>
         <div className="col-6">
-          <form className="mt-4">
-            <h2>Personal Loan Request</h2>
-            <div className="mb-3">
-              <label htmlFor="inputAmount" className="form-label">
-                Amount
-              </label>
-              <input type="text" className="form-control" id="inputAmount" />
-            </div>
-            <div className="mb-3 choose">
-              <select className="form-select" aria-label="Default select example">
-                <option defaultValue>Period</option>
-                <option value="1">3 months</option>
-                <option value="2">6 months</option>
-                <option value="3">9 months</option>
-                <option value="4">12 months</option>
-                <option value="5">24 months</option>
-              </select>
-            </div>
-            <div className="mb-3 choose">
-              <label htmlFor="inputInterestRate" className="form-label">
-                Interest Rate
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="inputInterestRate"
-                placeholder="9%"
-                disabled
-              />
-            </div>
-            <button type="submit" className="btn loan btn-primary">
-              Send Request
-            </button>
-          </form>
+          <LoanRequest url="requestPersonalLoan" loanType="Personal" rate="12%" rateValue="12" periodOptions={periodOptions}/>
         </div>
       </div>
     </div>
