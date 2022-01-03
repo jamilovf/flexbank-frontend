@@ -1,8 +1,48 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Cards.css";
+import OrderCardService from "../../api/orderCardService";
 import visaLogo from "../../img/visa-logo.svg";
 
 export default function OrderCard() {
+  const [orderError, setorderError] = useState(false);
+  const [orderMessage, setorderMessage] = useState("");
+  const standardOrderRef = useRef();
+  const premiumOrderRef = useRef();
+
+  useEffect(() => {}, [orderError, orderMessage]);
+
+  const orderStandardHandler = () => {
+    let orderCardService = new OrderCardService();
+    const type = standardOrderRef.current.value;
+
+    orderCardService
+      .orderCard({ type })
+      .then((response) => {
+        setorderError(false);
+        setorderMessage(response.data);
+      })
+      .catch((error) => {
+        setorderError(true);
+        setorderMessage(error.response.data.message);
+      });
+  };
+
+  const orderPremiumHandler = () => {
+    let orderCardService = new OrderCardService();
+    const type = premiumOrderRef.current.value;
+
+    orderCardService
+      .orderCard({ type })
+      .then((response) => {
+        setorderError(false);
+        setorderMessage(response.data);
+      })
+      .catch((error) => {
+        setorderError(true);
+        setorderMessage(error.response.data.message);
+      });
+  };
+
   return (
     <div className="main-container">
       <div className="scene">
@@ -27,7 +67,13 @@ export default function OrderCard() {
             </div>
           </div>
         </div>
-        <button type="button" className="card btn btn-outline-success">
+        <button
+          type="button"
+          ref={standardOrderRef}
+          className="card btn btn-outline-success"
+          value="STANDARD"
+          onClick={orderStandardHandler}
+        >
           Order Standard
         </button>
         <div className="my__card premium">
@@ -51,10 +97,21 @@ export default function OrderCard() {
             </div>
           </div>
         </div>
-        <button type="button" className="card btn btn-outline-success premium">
+        <button
+          type="button"
+          ref={premiumOrderRef}
+          className="card btn btn-outline-success premium"
+          value="PREMIUM"
+          onClick={orderPremiumHandler}
+        >
           Order Premium
         </button>
       </div>
+      {orderError ? (
+        <h6 className="card-order-error">{orderMessage}</h6>
+      ) : (
+        <h6 className="card-order-success">{orderMessage}</h6>
+      )}
     </div>
   );
 }

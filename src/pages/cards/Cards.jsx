@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./Cards.css";
-import visaLogo from "../../img/visa-logo.svg";
 import CardService from "../../api/cardService";
 import { splitString, formattedBalance } from "../../common/helper";
 import BankCard from "./BankCard";

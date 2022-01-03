@@ -29,8 +29,9 @@ function SignIn(props) {
         props.onSigninSuccess();
         history.replace("/home");
       })
-      .catch( 
+      .catch((error) =>{ 
         setcredentialError("Please, enter your credentials correctly.")
+      }
       );
   };
 

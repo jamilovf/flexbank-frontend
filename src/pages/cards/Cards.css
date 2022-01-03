@@ -180,3 +180,15 @@
     display: inline-block;
     flex-direction: row;
   }
+
+.card-order-error{
+  margin-right: 10em;
+  margin-top: 16em;
+  color: #DC3545;
+}
+
+.card-order-success{
+  margin-right: 10em;
+  margin-top: 16em;
+  color: #0d865c;
+}
