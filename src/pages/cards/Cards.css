@@ -172,6 +172,15 @@
     
   }
 
+  .btn.btn-success{
+    margin-left: 10em;
+    margin-top: 4em;
+    width: 10em;
+    height: 2.5em;
+    
+  }
+
+
   .number-group{
     margin-right: 0.5em;
   }

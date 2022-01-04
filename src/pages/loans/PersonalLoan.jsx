@@ -31,11 +31,21 @@ export default function PersonalLoan() {
     <div className="container">
       <div className="row">
         <div className="col-4">
-          <LoanCalculator rate="12%" rateValue="12" periodOptions={periodOptions} />
+          <LoanCalculator
+            rate="12%"
+            rateValue="12"
+            periodOptions={periodOptions}
+          />
         </div>
         <div className="col-2"></div>
         <div className="col-6">
-          <LoanRequest url="requestPersonalLoan" loanType="Personal" rate="12%" rateValue="12" periodOptions={periodOptions}/>
+          <LoanRequest
+            url="requestPersonalLoan"
+            loanType="Personal"
+            rate="12%"
+            rateValue="12"
+            periodOptions={periodOptions}
+          />
         </div>
       </div>
     </div>

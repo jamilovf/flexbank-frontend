@@ -41,7 +41,7 @@ export default function LoanCalculator(props) {
           <option defaultValue>Period</option>
           {props.periodOptions.map((periodOption) => {
             return (
-              <option value={periodOption.key}>{periodOption.value}</option>
+              <option key={periodOption.key} value={periodOption.key}>{periodOption.value}</option>
             );
           })}
         </select>

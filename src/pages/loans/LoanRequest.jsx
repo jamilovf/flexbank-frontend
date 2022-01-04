@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import LoanRequestService from "../../api/loanRequestService";
 
 export default function LoanRequest(props) {
@@ -14,11 +14,13 @@ export default function LoanRequest(props) {
 
     loanRequestService
       .requestLoan(props.url, { amount, period })
-      .then((response) => {
-          setrequestResult(response.data);
+      .then((response) => { 
+        console.log(response.data);
+        setrequestResult(response.data);
       })
       .catch((error) => {
-          setrequestResult("Something get wrong.")
+        console.log(error.response.data);
+        setrequestResult("Something get wrong.");
       });
   };
 
@@ -45,7 +47,7 @@ export default function LoanRequest(props) {
           <option defaultValue>Period</option>
           {props.periodOptions.map((periodOption) => {
             return (
-              <option value={periodOption.key}>{periodOption.value}</option>
+              <option key={periodOption.key} value={periodOption.key}>{periodOption.value}</option>
             );
           })}
         </select>
@@ -66,11 +68,7 @@ export default function LoanRequest(props) {
       <button type="submit" className="btn loan btn-primary">
         Send Request
       </button>
-      {requestResult  && (
-        <h6 className="loan-result">
-            {requestResult}
-        </h6>
-      )}
+      <h6 className="loan-result">{requestResult}</h6>
     </form>
   );
 }

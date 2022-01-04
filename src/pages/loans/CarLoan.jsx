@@ -31,11 +31,21 @@ export default function CarLoan() {
     <div className="container">
       <div className="row">
         <div className="col-4">
-          <LoanCalculator rate="14%" rateValue="14" periodOptions={periodOptions}/>
+          <LoanCalculator
+            rate="14%"
+            rateValue="14"
+            periodOptions={periodOptions}
+          />
         </div>
         <div className="col-2"></div>
         <div className="col-6">
-         <LoanRequest url="requestCarLoan" loanType="Car" rate="14%" rateValue="14" periodOptions={periodOptions}/>
+          <LoanRequest
+            url="requestCarLoan"
+            loanType="Car"
+            rate="14%"
+            rateValue="14"
+            periodOptions={periodOptions}
+          />
         </div>
       </div>
     </div>

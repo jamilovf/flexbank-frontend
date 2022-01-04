@@ -11,4 +11,22 @@ export default class CardService{
         }
         return axios.get("/api/cards/findAll", config);
     }
+
+    blockCard(body){
+        let config = {
+            headers : {
+                Authorization : secureLs.get("Authorization")
+            }
+        }
+        return axios.put("/api/cards/block", body, config);
+    }
+
+    unblockCard(body){
+        let config = {
+            headers : {
+                Authorization : secureLs.get("Authorization")
+            }
+        }
+        return axios.put("/api/cards/unblock", body, config);
+    }
 }

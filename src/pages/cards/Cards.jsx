@@ -16,6 +16,8 @@ export default function Cards() {
   const [premiumBalance, setpremiumBalance] = useState("");
   const [premiumExpiryDate, setpremiumExpiryDate] = useState("");
   const [customerName, setcustomerName] = useState("");
+  const [standardBlocked, setstandardBlocked] = useState(false);
+  const [premiumBlocked, setpremiumBlocked] = useState(false);
 
   useEffect(() => {
     let cardService = new CardService();
@@ -29,6 +31,7 @@ export default function Cards() {
           setstandardBalance(formattedBalance(card.balance));
           setstandardExpiryDate(card.expiryDate);
           setcustomerName(card.customerName);
+          setstandardBlocked(card.isBlocked);
         } else if (card.cardType === "PREMIUM") {
           setpremiumCard(true);
           setpremiumId(card.id);
@@ -36,11 +39,27 @@ export default function Cards() {
           setpremiumBalance(formattedBalance(card.balance));
           setpremiumExpiryDate(card.expiryDate);
           setcustomerName(card.customerName);
+          setpremiumBlocked(card.isBlocked);
         }
       });
     });
   }, []);
 
+  const blockCard = (cardType) => {
+    if (cardType === "STANDARD") {
+      setstandardBlocked(true);
+    } else {
+      setpremiumBlocked(true);
+    }
+  };
+
+  const unblockCard = (cardType) => {
+    if (cardType === "STANDARD") {
+      setstandardBlocked(false);
+    } else {
+      setpremiumBlocked(false);
+    }
+  };
   return (
     <div className="main-container">
       <div className="flexcard">
@@ -62,11 +81,15 @@ export default function Cards() {
       <div className="scene">
         {standardCard ? (
           <BankCard
-            cardType="my__card"
-            key={standardId}
+            cardTypeClass="my__card"
+            cardType="STANDARD"
+            id={standardId}
             cardNumber={standardCardNumber}
             cardExpiryDate={standardExpiryDate}
             customerName={customerName}
+            blocked={standardBlocked}
+            blockCard={blockCard}
+            unblockCard={unblockCard}
           />
         ) : null}
         {standardCard ? (
@@ -76,11 +99,15 @@ export default function Cards() {
         ) : null}
         {premiumCard ? (
           <BankCard
-            cardType="my__card premium"
-            key={premiumId}
+            cardTypeClass="my__card premium"
+            cardType="PREMIUM"
+            id={premiumId}
             cardNumber={premiumCardNumber}
             cardExpiryDate={premiumExpiryDate}
             customerName={customerName}
+            blocked={premiumBlocked}
+            blockCard={blockCard}
+            unblockCard={unblockCard}
           />
         ) : null}
         {premiumCard ? (
