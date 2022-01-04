@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import { Redirect, Route } from "react-router-dom";
 import AccountDetails from "./pages/accountDetails/AccountDetails";
+import UpdateAccountDetails from "./pages/accountDetails/UpdateAccountDetails";
 import AboutUs from "./pages/auth/AboutUs";
 import AuthHome from "./pages/auth/AuthHome";
 import AuthHomeInfo from "./pages/auth/AuthHomeInfo";
@@ -108,6 +109,10 @@ function App(props) {
 
       <Route path="/account-details">
         {props.store.isLoggedIn ? <AccountDetails /> : <Redirect to="/" />}
+      </Route>
+
+      <Route path="/update-account-details">
+        {props.store.isLoggedIn ? <UpdateAccountDetails /> : <Redirect to="/" />}
       </Route>
 
       <Route path="/transfer">

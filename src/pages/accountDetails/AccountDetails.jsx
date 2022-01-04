@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import AccountDetailsService from "../../api/accountDetailsService";
 import secureLs from "../../common/helper";
 import { tokenExpired } from "../../redux/actions/authActions";
@@ -101,9 +101,10 @@ function AccountDetails(props) {
           <p> {zip}</p>
         </div>
         <div className="col-12">
-          <button type="submit" className="acc btn btn-primary">
+          <Link to="update-account-details"><button type="button" className="acc btn btn-primary">
             Update
           </button>
+          </Link>
         </div>
       </div>
     </div>

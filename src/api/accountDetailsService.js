@@ -11,4 +11,13 @@ export default class AccountDetailsService{
         }
         return axios.get("/api/customers/getDetails", config);
     }
+
+    updateAccountDetails(body){
+        let config = {
+            headers : {
+                Authorization : secureLs.get("Authorization")
+            }
+        }
+        return axios.post("/api/customers/update", body, config);
+    }
 }
