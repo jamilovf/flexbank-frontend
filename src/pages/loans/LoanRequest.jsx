@@ -7,7 +7,9 @@ export default function LoanRequest(props) {
   const periodRef = useRef();
   const amountRef = useRef();
 
-  const submitHandler = () => {
+  const submitHandler = (event) => {
+    event.preventDefault();
+
     let loanRequestService = new LoanRequestService();
     const amount = amountRef.current.value;
     const period = periodRef.current.value;

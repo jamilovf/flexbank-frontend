@@ -1,21 +1,33 @@
-h2{
-    color: #0d865c;
-    margin-bottom: 1em;
-    margin-right: 3em;
+h2 {
+  color: #0d865c;
+  margin-bottom: 1em;
+  margin-right: 3em;
 }
 
-.mb-3.choose{
-    margin-top: 2em;
+.mb-3.choose {
+  margin-top: 2em;
 }
 
-.btn-primary{
-    color: #fff;
-    background-color: #0d865c;
-    border-color: #0d865c;
-    margin-top: 0.5em;
+.btn-primary {
+  color: #fff;
+  background-color: #0d865c;
+  border-color: #0d865c;
+  margin-top: 0.5em;
 }
 
-.btn-primary:hover{
-    background-color: #0d865c;
-    border-color: #0d865c;
+.btn-primary:hover {
+  background-color: #0d865c;
+  border-color: #0d865c;
+}
+
+.transfer-error {
+  display: inline;
+  margin-left: 8em;
+  color: #dc3545;
+}
+
+.transfer-success {
+  display: inline;
+  margin-left: 8em;
+  color: #0d865c;
 }
