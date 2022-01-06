@@ -4,7 +4,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 import { Link } from "react-router-dom";
 import TransactionService from "../../api/transactionService";
-import { formattedBalance } from "../../common/helper";
+import { convertDate, formattedBalance } from "../../common/helper";
 
 export default function TransactionHistory() {
   const [fromDate, setFromDate] = useState(new Date());
@@ -13,6 +13,9 @@ export default function TransactionHistory() {
   const [pageCount, setpageCount] = useState(1);
   const [realPageCount, setrealPageCount] = useState(1);
   const [pageGroup, setpageGroup] = useState(0);
+  const [transferCheck, settransferCheck] = useState("");
+  const [paymentCheck, setpaymentCheck] = useState("");
+  const [isSearched, setisSearched] = useState(false);
 
   useEffect(() => {
     let transactionService = new TransactionService();
@@ -41,12 +44,28 @@ export default function TransactionHistory() {
   const pageClickHandler = (page) => {
     let transactionService = new TransactionService();
 
+    const from = convertDate(fromDate);
+    const to = convertDate(toDate);
+    const type1 = transferCheck;
+    const type2 = paymentCheck;
+
+    if(isSearched){
+    transactionService.searchTransactions(page, from, to, type1, type2)
+    .then((response) => {
+      settransactions(response.data);
+    })
+    .catch((error) => {
+
+    })
+  }
+    else{
     transactionService
       .getAll(page)
       .then((response) => {
         settransactions(response.data);
       })
       .catch((error) => {});
+    }
   };
 
   const nextClickHandler = () => {
@@ -75,6 +94,41 @@ export default function TransactionHistory() {
       setpageGroup(pageGroup - 1);
     }
   };
+
+  const searchClickHandler = () => {
+    setisSearched(true);
+    let transactionService = new TransactionService();
+
+    const from = convertDate(fromDate);
+    const to = convertDate(toDate);
+    const type1 = transferCheck;
+    const type2 = paymentCheck;
+
+    transactionService.searchTransactions(1, from, to, type1, type2)
+    .then((response) => {
+      settransactions(response.data);
+
+      setrealPageCount(response.data[0].count);
+      if (response.data[0].count > 16) {
+        setpageCount(16);
+      } 
+      else {
+        setpageCount(response.data[0].count);
+      }
+    })
+    .catch((error) => {
+
+    })
+  }
+
+  const checkboxHandler = (event) => {
+    if(event.target.value === "Transfer"){
+      event.target.checked ? settransferCheck("Transfer") : settransferCheck("");
+    }
+    else{
+      event.target.checked ? setpaymentCheck("Payment") : setpaymentCheck("");
+    }
+  }
 
   return (
     <div className="transaction container">
@@ -115,9 +169,9 @@ export default function TransactionHistory() {
               <input
                 className="form-check-input"
                 type="checkbox"
-                value=""
+                value="Transfer"
                 id="transferCheck"
-              />
+                onChange={checkboxHandler}              />
               <label className="form-check-label" htmlFor="transferCheck">
                 Transfer
               </label>
@@ -126,14 +180,15 @@ export default function TransactionHistory() {
               <input
                 className="form-check-input"
                 type="checkbox"
-                value=""
+                value="Payment"
                 id="paymentCheck"
+                onChange={checkboxHandler}
               />
               <label className="form-check-label" htmlFor="paymentCheck">
                 Payment
               </label>
             </div>
-            <button type="submit" className="btn transaction btn-primary">
+            <button type="button" className="transaction btn btn-primary" onClick={searchClickHandler}>
               Search
             </button>
           </form>

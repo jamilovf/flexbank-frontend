@@ -42,6 +42,7 @@ form.transaction {
 .transaction.btn-primary:hover {
   background-color: #0d865c;
   border-color: #0d865c;
+  color: #fff;
 }
 
 .react-datepicker-wrapper {

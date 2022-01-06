@@ -32,4 +32,20 @@ export default class TransactionService {
     };
     return axios.get("/api/transactions/countPages", config);
   }
+
+  searchTransactions(page, from, to, type1, type2) {
+    let config = {
+      headers: {
+        Authorization: secureLs.get("Authorization"),
+      },
+      params: {
+        from: from,
+        to: to,
+        type1: type1,
+        type2: type2,
+        page: page
+      },
+    };
+    return axios.get("/api/transactions/search", config);
+  }
 }
