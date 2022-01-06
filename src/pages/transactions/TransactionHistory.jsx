@@ -71,6 +71,7 @@ export default function TransactionHistory() {
     } 
     else {
       setpageCount(16);
+      setrealPageCount(realPageCount + 16);
       setpageGroup(pageGroup - 1);
     }
   };
