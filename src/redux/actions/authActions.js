@@ -7,6 +7,13 @@ export const signinSuccess = () => {
     }
 }
 
+export const adminSigninSuccess = () => {
+    return {
+        type : ACTIONS.ADMIN_SIGNIN_SUCCESS
+    }
+}
+
+
 export const phoneNumberVerificationSuccess = () => {
     return {
         type : ACTIONS.PHONE_NUMBER_VERIFICATION_SUCCESS

@@ -3,7 +3,8 @@ import * as ACTIONS from "../constants/constants";
 const authState = {
   isLoggedIn: false,
   isMessageCodeAllowed: false,
-  isSignupAllowed: false
+  isSignupAllowed: false,
+  isAdmin: false
 };
 
 const authReducer = (state = { ...authState }, action) => {
@@ -11,6 +12,13 @@ const authReducer = (state = { ...authState }, action) => {
     return {
       ...state,
       isLoggedIn: true
+    };
+  }
+  else if(action.type === ACTIONS.ADMIN_SIGNIN_SUCCESS){
+    return {
+      ...state,
+      isLoggedIn: true,
+      isAdmin: true
     };
   }
   else if (action.type === ACTIONS.PHONE_NUMBER_VERIFICATION_SUCCESS) {

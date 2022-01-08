@@ -12,6 +12,7 @@ const configureStore = () => {
     isLoggedIn: false,
     isMessageCodeAllowed: false,
     isSignupAllowed: false,
+    isAdmin: false
   }
 
   if(flexAuth){
