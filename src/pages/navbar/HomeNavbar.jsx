@@ -38,7 +38,7 @@ function HomeNavbar(props) {
         <Link className="navbar-info" to="loan-notifications">
           Loan notifications
         </Link>
-        <Link className="navbar-info" to="contact-us">
+        <Link className="navbar-info" to="contact">
           Contact Us
         </Link>
         <button className="btn btn-outline-danger" type="button" onClick={logoutHandler}>

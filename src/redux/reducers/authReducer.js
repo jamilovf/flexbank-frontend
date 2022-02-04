@@ -21,6 +21,13 @@ const authReducer = (state = { ...authState }, action) => {
       isAdmin: true
     };
   }
+  else if(action.type === ACTIONS.ADMIN_LOGOUT_SUCCESS){
+    return {
+      ...state,
+      isLoggedIn: false,
+      isAdmin: false
+    };
+  }
   else if (action.type === ACTIONS.PHONE_NUMBER_VERIFICATION_SUCCESS) {
     return {
       ...state,

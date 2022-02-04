@@ -2,6 +2,10 @@ import { connect } from "react-redux";
 import { Redirect, Route } from "react-router-dom";
 import AccountDetails from "./pages/accountDetails/AccountDetails";
 import UpdateAccountDetails from "./pages/accountDetails/UpdateAccountDetails";
+import AdminSignIn from "./pages/admin/AdminSignIn";
+import AdminAuthNavbar from "./pages/admin/AdminAuthNavbar";
+import AdminNavbar from "./pages/admin/AdminNavbar";
+import AdminHome from "./pages/admin/AdminHome";
 import AboutUs from "./pages/auth/AboutUs";
 import AuthHome from "./pages/auth/AuthHome";
 import AuthHomeInfo from "./pages/auth/AuthHomeInfo";
@@ -27,9 +31,8 @@ import Transfer from "./pages/transfer/Transfer";
 function App(props) {
   return (
     <div>
-      {props.store.isLoggedIn ? <HomeNavbar /> : <AuthNavbar />}
-
       <Route path="/phone-number-verification">
+        <AuthNavbar />
         {props.store.isLoggedIn ? (
           <Redirect to="/home" />
         ) : (
@@ -38,6 +41,7 @@ function App(props) {
       </Route>
 
       <Route path="/sms-code-verification">
+        <AuthNavbar />
         {props.store.isLoggedIn ? (
           <Redirect to="/home" />
         ) : props.store.isMessageCodeAllowed ? (
@@ -48,6 +52,7 @@ function App(props) {
       </Route>
 
       <Route path="/sign-up">
+        <AuthNavbar />
         {props.store.isLoggedIn ? (
           <Redirect to="/home" />
         ) : props.store.isSignupAllowed ? (
@@ -58,76 +63,122 @@ function App(props) {
       </Route>
 
       <Route path="/sign-in">
+        <AuthNavbar />
         {props.store.isLoggedIn ? <Redirect to="/home" /> : <SignIn />}
       </Route>
 
+      <Route path="/admin/sign-in">
+        <AdminAuthNavbar />
+        {props.store.isLoggedIn ? (
+          <Redirect to="/admin/home" />
+        ) : (
+          <AdminSignIn />
+        )}
+      </Route>
+
+      <Route path="/admin/home">
+        <AdminNavbar />
+        {props.store.isLoggedIn && props.store.isAdmin ? (
+          <AdminHome />
+        ) : (
+          <Redirect to="/admin/sign-in" />
+        )}
+      </Route>
+
       <Route path="/" exact>
+        {props.store.isLoggedIn ? <HomeNavbar /> : <AuthNavbar />}
         <AuthHome>
           <AuthHomeInfo />
         </AuthHome>
       </Route>
 
       <Route path="/about-us">
+        <AuthNavbar />
         <AuthHome>
           <AboutUs />
         </AuthHome>
       </Route>
 
       <Route path="/contact-us">
+        <AuthNavbar />
+        <AuthHome>
+          <ContactUs />
+        </AuthHome>
+      </Route>
+
+      <Route path="/contact">
+        <HomeNavbar />
         <AuthHome>
           <ContactUs />
         </AuthHome>
       </Route>
 
       <Route path="/home">
+        <HomeNavbar />
         {props.store.isLoggedIn ? <Home /> : <Redirect to="/" />}
       </Route>
 
       <Route path="/order-card">
+        <HomeNavbar />
         {props.store.isLoggedIn ? <OrderCard /> : <Redirect to="/" />}
       </Route>
 
       <Route path="/cards">
+        <HomeNavbar />
         {props.store.isLoggedIn ? <Cards /> : <Redirect to="/" />}
       </Route>
 
       <Route path="/loan-services">
+        <HomeNavbar />
         {props.store.isLoggedIn ? <LoanServices /> : <Redirect to="/" />}
       </Route>
 
       <Route path="/personal-loan">
+        <HomeNavbar />
         {props.store.isLoggedIn ? <PersonalLoan /> : <Redirect to="/" />}
       </Route>
 
       <Route path="/car-loan">
+        <HomeNavbar />
         {props.store.isLoggedIn ? <CarLoan /> : <Redirect to="/" />}
       </Route>
 
       <Route path="/loan-notifications">
+        <HomeNavbar />
         {props.store.isLoggedIn ? <LoanNotifications /> : <Redirect to="/" />}
       </Route>
 
       <Route path="/account-details">
+        <HomeNavbar />
         {props.store.isLoggedIn ? <AccountDetails /> : <Redirect to="/" />}
       </Route>
 
       <Route path="/update-account-details">
-        {props.store.isLoggedIn ? <UpdateAccountDetails /> : <Redirect to="/" />}
+        <HomeNavbar />
+        {props.store.isLoggedIn ? (
+          <UpdateAccountDetails />
+        ) : (
+          <Redirect to="/" />
+        )}
       </Route>
 
       <Route path="/transfer">
+        <HomeNavbar />
         {props.store.isLoggedIn ? <Transfer /> : <Redirect to="/" />}
       </Route>
 
       <Route path="/internal-transfer">
+        <HomeNavbar />
         {props.store.isLoggedIn ? <InternalTransfer /> : <Redirect to="/" />}
       </Route>
 
       <Route path="/external-transfer">
+        <HomeNavbar />
         {props.store.isLoggedIn ? <ExternalTransfer /> : <Redirect to="/" />}
       </Route>
 
       <Route path="/transaction-history">
+        <HomeNavbar />
         {props.store.isLoggedIn ? <TransactionHistory /> : <Redirect to="/" />}
       </Route>
     </div>
@@ -136,7 +187,7 @@ function App(props) {
 
 const mapStateToProps = (store) => {
   return {
-    store
+    store,
   };
 };
 

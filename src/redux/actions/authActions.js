@@ -13,6 +13,13 @@ export const adminSigninSuccess = () => {
     }
 }
 
+export const adminLogoutSuccess = () => {
+    return {
+        type : ACTIONS.ADMIN_LOGOUT_SUCCESS
+    }
+}
+
+
 
 export const phoneNumberVerificationSuccess = () => {
     return {

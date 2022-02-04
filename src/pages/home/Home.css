@@ -28,3 +28,7 @@
     width: 15em;
     margin: auto;
 }
+
+.admin.btn.btn-outline-primary{
+    width: 12em;
+}
