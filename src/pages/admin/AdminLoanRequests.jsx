@@ -5,7 +5,6 @@ import "./AdminLoanRequest.css";
 
 export default function AdminLoanRequests() {
   const [loanRequests, setloanRequests] = useState([]);
-
   useEffect(() => {
     let adminService = new AdminService();
 
@@ -13,15 +12,42 @@ export default function AdminLoanRequests() {
       .getAllLoanRequestNotifications()
       .then((response) => {
         setloanRequests(response.data);
+
       })
       .catch((error) => {});
   }, []);
+
+  const approveHandler = (loanRequestId) => {
+    let adminService = new AdminService();
+    const body = {loanRequestId};
+
+    adminService.approveLoanRequest(body)
+    .then((response => {
+        console.log(response.data);
+    }))
+    .catch((error) => {
+        console.error(error);
+    })
+  }
+
+  const declineHandler = (loanRequestId) => {
+    let adminService = new AdminService();
+    const body = {loanRequestId};
+
+    adminService.declineLoanRequest(body)
+    .then((response => {
+        console.log(response.data);
+    }))
+    .catch((error) => {
+        console.error(error);
+    })
+  }
 
   return (
     <div className="container">
       <div className="row">
         <div className="col-9">
-            <h2 className="mt-2">Loan Request Notifications</h2>
+          <h2 className="mt-2">Loan Request Notifications</h2>
           <table className="table">
             <thead>
               <tr>
@@ -44,10 +70,24 @@ export default function AdminLoanRequests() {
                     <td>{formattedBalance(loanRequest.amount)} $</td>
                     <td>
                       {loanRequest.period}{" "}
-                      {loanRequest.type == "CAR" ? "year" : "months"}
+                      {loanRequest.type === "CAR" ? "year" : "months"}
                     </td>
-                    <td><button className="alr btn btn-primary">Accept</button></td>
-                    <td><button className="alr btn btn-danger">Decline</button></td>
+                    <td>
+                      <button
+                        onClick={() => approveHandler(loanRequest.id)}
+                        className="alr btn btn-primary"
+                      >
+                        Approve
+                      </button>
+                    </td>
+                    <td>
+                      <button
+                        onClick={() => declineHandler(loanRequest.id)}
+                        className="alr btn btn-danger"
+                      >
+                        Decline
+                      </button>
+                    </td>
                   </tr>
                 );
               })}
