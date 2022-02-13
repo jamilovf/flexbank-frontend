@@ -26,8 +26,7 @@ export default function TransactionHistory() {
         setrealPageCount(response.data);
         if (response.data > 16) {
           setpageCount(16);
-        } 
-        else {
+        } else {
           setpageCount(response.data);
         }
       })
@@ -49,35 +48,31 @@ export default function TransactionHistory() {
     const type1 = transferCheck;
     const type2 = paymentCheck;
 
-    if(isSearched){
-    transactionService.searchTransactions(page, from, to, type1, type2)
-    .then((response) => {
-      settransactions(response.data);
-    })
-    .catch((error) => {
-
-    })
-  }
-    else{
-    transactionService
-      .getAll(page)
-      .then((response) => {
-        settransactions(response.data);
-      })
-      .catch((error) => {});
+    if (isSearched) {
+      transactionService
+        .searchTransactions(page, from, to, type1, type2)
+        .then((response) => {
+          settransactions(response.data);
+        })
+        .catch((error) => {});
+    } else {
+      transactionService
+        .getAll(page)
+        .then((response) => {
+          settransactions(response.data);
+        })
+        .catch((error) => {});
     }
   };
 
   const nextClickHandler = () => {
     if (realPageCount - 16 < 0) {
       console.log("No Next Page");
-    } 
-    else if (realPageCount - 16 > 16) {
+    } else if (realPageCount - 16 > 16) {
       setpageGroup(pageGroup + 1);
       setrealPageCount(realPageCount - 16);
       setpageCount(16);
-    }
-     else {
+    } else {
       setpageGroup(pageGroup + 1);
       setrealPageCount(realPageCount - 16);
       setpageCount(realPageCount - 16);
@@ -87,8 +82,7 @@ export default function TransactionHistory() {
   const previousClickHandler = () => {
     if (pageGroup - 1 < 0) {
       console.log("No Previous Page");
-    } 
-    else {
+    } else {
       setpageCount(16);
       setrealPageCount(realPageCount + 16);
       setpageGroup(pageGroup - 1);
@@ -104,31 +98,30 @@ export default function TransactionHistory() {
     const type1 = transferCheck;
     const type2 = paymentCheck;
 
-    transactionService.searchTransactions(1, from, to, type1, type2)
-    .then((response) => {
-      settransactions(response.data);
+    transactionService
+      .searchTransactions(1, from, to, type1, type2)
+      .then((response) => {
+        settransactions(response.data);
 
-      setrealPageCount(response.data[0].count);
-      if (response.data[0].count > 16) {
-        setpageCount(16);
-      } 
-      else {
-        setpageCount(response.data[0].count);
-      }
-    })
-    .catch((error) => {
-
-    })
-  }
+        setrealPageCount(response.data[0].count);
+        if (response.data[0].count > 16) {
+          setpageCount(16);
+        } else {
+          setpageCount(response.data[0].count);
+        }
+      })
+      .catch((error) => {});
+  };
 
   const checkboxHandler = (event) => {
-    if(event.target.value === "Transfer"){
-      event.target.checked ? settransferCheck("Transfer") : settransferCheck("");
-    }
-    else{
+    if (event.target.value === "Transfer") {
+      event.target.checked
+        ? settransferCheck("Transfer")
+        : settransferCheck("");
+    } else {
       event.target.checked ? setpaymentCheck("Payment") : setpaymentCheck("");
     }
-  }
+  };
 
   return (
     <div className="transaction container">
@@ -139,6 +132,7 @@ export default function TransactionHistory() {
               <label htmlFor="datepicker-from">From</label>
               <div className="input-group date" id="datepicker-from">
                 <DatePicker
+                  dateFormat="yyyy/MM/dd"
                   className="form-control"
                   selected={fromDate}
                   onChange={(date) => setFromDate(date)}
@@ -154,6 +148,7 @@ export default function TransactionHistory() {
               <label htmlFor="datepicker-to">To</label>
               <div className="input-group date" id="datepicker-to">
                 <DatePicker
+                  dateFormat="yyyy/MM/dd"
                   className="form-control"
                   selected={toDate}
                   onChange={(date) => setToDate(date)}
@@ -171,7 +166,8 @@ export default function TransactionHistory() {
                 type="checkbox"
                 value="Transfer"
                 id="transferCheck"
-                onChange={checkboxHandler}              />
+                onChange={checkboxHandler}
+              />
               <label className="form-check-label" htmlFor="transferCheck">
                 Transfer
               </label>
@@ -188,7 +184,11 @@ export default function TransactionHistory() {
                 Payment
               </label>
             </div>
-            <button type="button" className="transaction btn btn-primary" onClick={searchClickHandler}>
+            <button
+              type="button"
+              className="transaction btn btn-primary"
+              onClick={searchClickHandler}
+            >
               Search
             </button>
           </form>

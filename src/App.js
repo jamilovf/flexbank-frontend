@@ -27,6 +27,7 @@ import TransactionHistory from "./pages/transactions/TransactionHistory";
 import ExternalTransfer from "./pages/transfer/ExternalTransfer";
 import InternalTransfer from "./pages/transfer/InternalTransfer";
 import Transfer from "./pages/transfer/Transfer";
+import AdminCustomerRegister from "./pages/admin/AdminCustomerRegister";
 
 function App(props) {
   return (
@@ -80,6 +81,15 @@ function App(props) {
         <AdminNavbar />
         {props.store.isLoggedIn && props.store.isAdmin ? (
           <AdminHome />
+        ) : (
+          <Redirect to="/admin/sign-in" />
+        )}
+      </Route>
+
+      <Route path="/admin/customer-register">
+        <AdminNavbar />
+        {props.store.isLoggedIn && props.store.isAdmin ? (
+          <AdminCustomerRegister />
         ) : (
           <Redirect to="/admin/sign-in" />
         )}

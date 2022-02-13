@@ -1,0 +1,41 @@
+h2 {
+  color: #0d865c;
+  margin-bottom: 1em;
+  margin-right: 3em;
+}
+
+.mb-3.choose {
+  margin-top: 2em;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #0d865c;
+  border-color: #0d865c;
+  margin-top: 0.5em;
+}
+
+.btn-primary:hover {
+  background-color: #0d865c;
+  border-color: #0d865c;
+}
+
+.ad.input-group.date .form-control {
+  width: 37.5em;
+}
+
+.ad.input-group.date span {
+  margin-left: 23.5em;
+}
+
+.register-error {
+  display: inline;
+  margin-left: 8em;
+  color: #dc3545;
+}
+
+.register-success {
+  display: inline;
+  margin-left: 8em;
+  color: #0d865c;
+}

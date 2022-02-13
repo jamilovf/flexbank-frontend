@@ -12,7 +12,7 @@ export default function AdminHome() {
           <div className="homeCard text-center">
             <img src={userDb} className="home card-img-top" alt="..." />
             <div className="row justify-content-center">
-              <Link to="order-card">
+              <Link to="customer-register">
                 <button className="admin btn btn-outline-primary">
                   Customer Registration
                 </button>
@@ -24,7 +24,7 @@ export default function AdminHome() {
           <div className="homeCard text-center">
             <img src={loanDb} className="home card-img-top" alt="..." />
             <div className="row justify-content-center">
-              <Link to="loan-services">
+              <Link to="loan-requests">
                 <button className="admin btn btn-outline-primary">
                   Loan requests
                 </button>

@@ -15,7 +15,7 @@ function AdminNavbar(props) {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container">
-        <Link className="navbar-brand" to="/admin">
+        <Link className="navbar-brand" to="/admin/home">
           <h1>
             <span>FlexBank</span>
           </h1>
