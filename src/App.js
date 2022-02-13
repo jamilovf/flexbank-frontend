@@ -28,6 +28,7 @@ import ExternalTransfer from "./pages/transfer/ExternalTransfer";
 import InternalTransfer from "./pages/transfer/InternalTransfer";
 import Transfer from "./pages/transfer/Transfer";
 import AdminCustomerRegister from "./pages/admin/AdminCustomerRegister";
+import AdminLoanRequests from "./pages/admin/AdminLoanRequests";
 
 function App(props) {
   return (
@@ -90,6 +91,15 @@ function App(props) {
         <AdminNavbar />
         {props.store.isLoggedIn && props.store.isAdmin ? (
           <AdminCustomerRegister />
+        ) : (
+          <Redirect to="/admin/sign-in" />
+        )}
+      </Route>
+
+      <Route path="/admin/loan-requests">
+        <AdminNavbar />
+        {props.store.isLoggedIn && props.store.isAdmin ? (
+          <AdminLoanRequests />
         ) : (
           <Redirect to="/admin/sign-in" />
         )}

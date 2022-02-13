@@ -3,6 +3,7 @@ import secureLs from "../common/helper";
 
 
 export default class AdminService {
+
   registerCustomerDetails(body) {
     let config = {
       headers: {
@@ -10,5 +11,14 @@ export default class AdminService {
       },
     };
     return axios.post("/api/admin/registerCustomerDetails", body, config);
+  }
+
+  getAllLoanRequestNotifications() {
+    let config = {
+      headers: {
+        Authorization: secureLs.get("Authorization"),
+      },
+    };
+    return axios.get("/api/admin/getAllLoanRequestNotifications", config);
   }
 }
