@@ -1,11 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { logoutSuccess } from "../../redux/actions/authActions";
+import LoanNotificationService from "../../api/loanNotificationService";
 import secureLs from "../../common/helper";
+import { useEffect } from "react";
 
 function HomeNavbar(props) {
+
+  const[loanNotifications, setloanNotifications] = useState([]);
+
+  useEffect(() => {
+    let loanNotificationService = new LoanNotificationService();
+
+    loanNotificationService
+      .getAllLoanNotifications()
+      .then((response) => {
+        setloanNotifications(response.data);
+      })
+      .catch((error) => {});
+  }, []);
 
   const logoutHandler = () =>{
     secureLs.set("Authorization", "");
@@ -36,7 +51,7 @@ function HomeNavbar(props) {
           Transaction History
         </Link>
         <Link className="navbar-info" to="loan-notifications">
-          Loan notifications
+          Loan notifications <span class="badge">{loanNotifications.length}</span>
         </Link>
         <Link className="navbar-info" to="contact">
           Contact Us

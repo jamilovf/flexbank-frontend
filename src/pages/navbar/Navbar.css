@@ -30,3 +30,7 @@ body{
 .navbar-info:hover{
     color: #0d865c;
 }
+
+.badge{
+    background-color: #DC3545;
+}

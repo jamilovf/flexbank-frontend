@@ -31,6 +31,10 @@ export const calculateTotalRepayment = (amount, period, rate) =>{
   return amount * ((1 + (rate / 100 / 12)) ** period);
 };
 
+export const capitalizeFirstLetter = (string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 export const convertDate = str => {
   str = str.toString();
   let parts = str.split(" ");
