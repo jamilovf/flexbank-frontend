@@ -1,15 +1,29 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import CardService from "../../api/cardService";
 import LoanNotificationService from "../../api/loanNotificationService";
 import { capitalizeFirstLetter } from "../../common/helper";
 import "./LoanNotifications.css";
 
 export default function LoanNotifications() {
   const [loanNotifications, setloanNotifications] = useState([]);
+  const [cards, setcards] = useState([]);
+
+  const cardRef = useRef();
 
   useEffect(() => {
     let loanNotificationService = new LoanNotificationService();
+    let cardService = new CardService();
+
+    cardService
+      .getAllCards()
+      .then((response) => {
+        response.data.map((card) => {
+          return setcards((cards) => [...cards, card]);
+        });
+      })
+      .catch((error) => {});
 
     loanNotificationService
       .getAllLoanNotifications()
@@ -42,6 +56,26 @@ export default function LoanNotifications() {
                   <h6 className="card-text amount">
                     Amount: ${loanNotification.amount}
                   </h6>
+                  <select
+                    className="form-select mt-4"
+                    ref={cardRef}
+                    aria-label="Default select example"
+                  >
+                    <option defaultValue>Choose card</option>
+                    {cards.map((card, index) => {
+                      return (
+                        <option value={card.id} key={index}>
+                          Card : {card.cardNumber}
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Balance:{" "}
+                          {card.balance}
+                        </option>
+                      );
+                    })}
+                  </select>
                   <button type="submit" className="btn loann btn-primary">
                     Pay
                   </button>

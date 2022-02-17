@@ -28,3 +28,6 @@
     border-color: #0d865c;
 }
 
+.card-body select{
+    width: 30em;
+}
