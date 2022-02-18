@@ -3,9 +3,8 @@ import CardService from "../../api/cardService";
 import TransactionService from "../../api/transactionService";
 
 export default function TransferForm(props) {
-
- const [transferError, settransferError] = useState(false);
- const [transferMessage, settransferMessage] = useState("");
+  const [transferError, settransferError] = useState(false);
+  const [transferMessage, settransferMessage] = useState("");
 
   const title1Ref = useRef();
   const title2Ref = useRef();
@@ -49,15 +48,16 @@ export default function TransferForm(props) {
     const chosenCardId = cardRef.current.value;
     body = { ...body, amount, chosenCardId };
 
-     transactionService.transfer(props.url, body)
-    .then((response) => {
+    transactionService
+      .transfer(props.url, body)
+      .then((response) => {
         settransferError(false);
         settransferMessage(response.data);
-    })
-    .catch((error) => {
-        settransferError(true)
+      })
+      .catch((error) => {
+        settransferError(true);
         settransferMessage(error.response.data.message);
-    })
+      });
   };
 
   return (
@@ -121,7 +121,9 @@ export default function TransferForm(props) {
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Balance: {card.balance}
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                Balance: {card.balance}
               </option>
             );
           })}

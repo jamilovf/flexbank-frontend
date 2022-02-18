@@ -43,9 +43,18 @@ export default class TransactionService {
         to: to,
         type1: type1,
         type2: type2,
-        page: page
+        page: page,
       },
     };
     return axios.get("/api/transactions/search", config);
+  }
+
+  payLoan(body) {
+    let config = {
+      headers: {
+        Authorization: secureLs.get("Authorization"),
+      },
+    };
+    return axios.put("/api/transactions/payLoan", body, config);
   }
 }

@@ -51,7 +51,7 @@ function HomeNavbar(props) {
           Transaction History
         </Link>
         <Link className="navbar-info" to="loan-notifications">
-          Loan notifications <span class="badge">{loanNotifications.length}</span>
+          Loan notifications <span className="badge">{loanNotifications.length}</span>
         </Link>
         <Link className="navbar-info" to="contact">
           Contact Us

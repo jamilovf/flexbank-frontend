@@ -3,14 +3,18 @@ import { useState } from "react";
 import { useEffect } from "react";
 import CardService from "../../api/cardService";
 import LoanNotificationService from "../../api/loanNotificationService";
+import TransactionService from "../../api/transactionService";
 import { capitalizeFirstLetter } from "../../common/helper";
 import "./LoanNotifications.css";
 
 export default function LoanNotifications() {
   const [loanNotifications, setloanNotifications] = useState([]);
   const [cards, setcards] = useState([]);
+  const [paymentError, setpaymentError] = useState(false);
+  const [paymentMessage, setpaymentMessage] = useState("");
 
   const cardRef = useRef();
+  const loanRef = useRef();
 
   useEffect(() => {
     let loanNotificationService = new LoanNotificationService();
@@ -32,14 +36,46 @@ export default function LoanNotifications() {
       })
       .catch((error) => {});
   }, []);
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+
+    let transactionService = new TransactionService();
+
+    const loanId = loanRef.current.id;
+    const cardId = cardRef.current.value;
+    
+    if (cardId === "Choose card") {
+      setpaymentError(true);
+      setpaymentMessage("Please, choose a card!");
+    } else {
+      const body = { loanId, cardId };
+
+      transactionService
+        .payLoan(body)
+        .then((response) => {
+          setpaymentError(false);
+          setpaymentMessage(response.data);
+        })
+        .catch((error) => {
+          setpaymentError(true);
+          setpaymentMessage(error.response.data.message);
+        });
+    }
+  };
   return (
     <div className="container">
       <div className="row">
         <div className="col-3"></div>
         <div className="col-6">
-          {loanNotifications.map((loanNotification, key) => {
+          {loanNotifications.map((loanNotification) => {
             return (
-              <div className="card mt-4" key={key}>
+              <div
+                ref={loanRef}
+                className="card mt-4"
+                key={loanNotification.id}
+                id={loanNotification.id}
+              >
                 <h5 className="card-header">
                   {capitalizeFirstLetter(
                     String(loanNotification.type).toLowerCase()
@@ -76,7 +112,11 @@ export default function LoanNotifications() {
                       );
                     })}
                   </select>
-                  <button type="submit" className="btn loann btn-primary">
+                  <button
+                    onClick={submitHandler}
+                    type="submit"
+                    className="btn loann btn-primary"
+                  >
                     Pay
                   </button>
                 </div>
@@ -84,6 +124,11 @@ export default function LoanNotifications() {
             );
           })}
         </div>
+        {paymentError ? (
+          <h6 className="payment-error">{paymentMessage}</h6>
+        ) : (
+          <h6 className="payment-success">{paymentMessage}</h6>
+        )}
       </div>
     </div>
   );

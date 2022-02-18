@@ -1,33 +1,47 @@
-.card-title{
-    display: inline;
+.card-title {
+  display: inline;
 }
 
-.card-text.rate{
-    display: inline;
-    margin-left: 13em;
+.card-text.rate {
+  display: inline;
+  margin-left: 13em;
 }
 
-.card-text.amount{
-    margin-top: 1em;
+.card-text.amount {
+  margin-top: 1em;
 }
 
-.card-header{
-    color: #0d865c;
+.card-header {
+  color: #0d865c;
 }
 
-.loann.btn-primary{
-    color: #fff;
-    background-color: #0d865c;
-    border-color: #0d865c;
-    margin-top: 2em;
-    width: 8em;
+.loann.btn-primary {
+  color: #fff;
+  background-color: #0d865c;
+  border-color: #0d865c;
+  margin-top: 2em;
+  width: 8em;
 }
 
-.loann.btn-primary:hover{
-    background-color: #0d865c;
-    border-color: #0d865c;
+.loann.btn-primary:hover {
+  background-color: #0d865c;
+  border-color: #0d865c;
 }
 
-.card-body select{
-    width: 30em;
+.card-body select {
+  width: 28em;
+}
+
+.payment-error {
+  display: inline;
+  text-align: center;
+  margin-top: 2em;
+  color: #dc3545;
+}
+
+.payment-success {
+  display: inline;
+  text-align: center;
+  margin-top: 2em;
+  color: #0d865c;
 }
