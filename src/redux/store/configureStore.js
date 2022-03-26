@@ -12,6 +12,8 @@ const configureStore = () => {
     isLoggedIn: false,
     isMessageCodeAllowed: false,
     isSignupAllowed: false,
+    isPasswordResetMessageCodeAllowed: false,
+    isPasswordResetAllowed: false,
     isAdmin: false
   }
 

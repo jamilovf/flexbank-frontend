@@ -4,6 +4,8 @@ const authState = {
   isLoggedIn: false,
   isMessageCodeAllowed: false,
   isSignupAllowed: false,
+  isPasswordResetMessageCodeAllowed: false,
+  isPasswordResetAllowed: false,
   isAdmin: false
 };
 
@@ -57,6 +59,25 @@ const authReducer = (state = { ...authState }, action) => {
     return {
       ...state,
       isLoggedIn: false
+    };
+  }
+  else if (action.type === ACTIONS.PASSWORD_RESET_PHONE_NUMBER_VERIFICATION_SUCCESS) {
+    return {
+      ...state,
+      isPasswordResetMessageCodeAllowed: true
+    };
+  }
+  else if (action.type === ACTIONS.PASSWORD_RESET_SMS_CODE_VERIFICATION_SUCCESS) {
+    return {
+      ...state,
+      isPasswordResetAllowed: true
+    };
+  }
+  else if (action.type === ACTIONS.PASSWORD_RESET_SUCCESS) {
+    return {
+      ...state,
+      isPasswordResetMessageCodeAllowed: false,
+      isPasswordResetAllowed: false
     };
   }
   return state;

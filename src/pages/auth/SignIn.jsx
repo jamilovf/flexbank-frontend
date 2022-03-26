@@ -81,8 +81,8 @@ function SignIn(props) {
         </button>
       </form>
       <div className="dropdown-divider"></div>
-      <Link to="#">New around here? Sign up</Link>
-      <Link id="forgotPassword" to="#">
+      <Link to="/sign-up">New around here? Sign up</Link>
+      <Link id="forgotPassword" to="/password-reset">
         Forgot password?
       </Link>
     </div>

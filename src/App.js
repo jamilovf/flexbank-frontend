@@ -29,6 +29,9 @@ import InternalTransfer from "./pages/transfer/InternalTransfer";
 import Transfer from "./pages/transfer/Transfer";
 import AdminCustomerRegister from "./pages/admin/AdminCustomerRegister";
 import AdminLoanRequests from "./pages/admin/AdminLoanRequests";
+import PasswordResetPhoneNumberVerification from "./pages/auth/PasswordResetPhoneNumberVerification";
+import PasswordReset from "./pages/auth/PasswordReset";
+import PasswordResetSmsCodeVerification from "./pages/auth/PasswordResetSmsCodeVerification";
 
 function App(props) {
   return (
@@ -61,6 +64,37 @@ function App(props) {
           <SignUp />
         ) : (
           <Redirect to="/phone-number-verification" />
+        )}
+      </Route>
+
+      <Route path="/password-reset-phone-number-verification">
+        <AuthNavbar />
+        {props.store.isLoggedIn ? (
+          <Redirect to="/home" />
+        ) : (
+          <PasswordResetPhoneNumberVerification />
+        )}
+      </Route>
+
+      <Route path="/password-reset-sms-code-verification">
+        <AuthNavbar />
+        {props.store.isLoggedIn ? (
+          <Redirect to="/home" />
+        ) : props.store.isPasswordResetMessageCodeAllowed ? (
+          <PasswordResetSmsCodeVerification />
+        ) : (
+          <Redirect to="/password-reset-phone-number-verification" />
+        )}
+      </Route>
+
+      <Route path="/password-reset">
+        <AuthNavbar />
+        {props.store.isLoggedIn ? (
+          <Redirect to="/home" />
+        ) : props.store.isPasswordResetAllowed ? (
+          <PasswordReset />
+        ) : (
+          <Redirect to="/password-reset-phone-number-verification" />
         )}
       </Route>
 

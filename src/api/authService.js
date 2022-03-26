@@ -28,4 +28,26 @@ export default class AuthService{
         }
         return axios.post("/api/auth/verifySmsCode", body, config);
     }
+
+    verifyPasswordResetPhoneNumber(body){
+        return axios.post("/api/auth/verifyPhoneNumberForPasswordReset", body);
+    }
+
+    verifyPasswordResetSmsCode(body){
+        let config = {
+            headers : {
+                phone : secureLs.get("phone")
+            }
+        }
+        return axios.post("/api/auth/verifySmsCodeForPasswordReset", body, config);
+    }
+
+    passwordReset(body){
+        let config = {
+            headers : {
+                phone : secureLs.get("phone")
+            }
+        }
+        return axios.post("/api/auth/resetPassword", body, config);
+    }
 }
