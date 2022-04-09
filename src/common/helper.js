@@ -16,7 +16,7 @@ export const hasDigit = (str) => {
 };
 
 export const hasSymbol = (str) => {
-  return str.match(/[!@#$%^&*()_+\-=[]{};':"\\|,.<>\/?]+/);
+  return str.match(/[$-/:-?{-~!"^_`\[\]]/);
 };
 
 export const splitString = (str, n) => {
